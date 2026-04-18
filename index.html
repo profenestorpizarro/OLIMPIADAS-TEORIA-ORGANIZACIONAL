@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Olimpiadas de Teoría Organizacional 2026-1</title>
+  <style>
+    :root {
+      --azul-900: #0b2e59;
+      --azul-700: #145da0;
+      --azul-500: #2e86de;
+      --azul-100: #eaf4ff;
+      --dorado: #d4af37;
+      --dorado-suave: #f6e7ad;
+      --blanco: #ffffff;
+      --gris-900: #16202a;
+      --gris-700: #425466;
+      --gris-300: #d7e0ea;
+      --gris-100: #f7fafc;
+      --verde: #1f9d71;
+      --rojo: #e25555;
+      --sombra: 0 18px 45px rgba(11, 46, 89, 0.12);
+      --radio: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #f8fbff 0%, #eef5fb 100%);
+      color: var(--gris-900);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      background: radial-gradient(circle at top right, rgba(255,255,255,.18), transparent 26%), linear-gradient(135deg, var(--azul-900), var(--azul-700) 58%, #2d9cdb);
+      color: var(--blanco);
+      padding: 42px 0 54px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.22);
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: center;
+      margin-top: 18px;
+    }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 66px);
+      line-height: 0.96;
+      margin: 12px 0 14px;
+      letter-spacing: -2px;
+    }
+
+    .hero p {
+      max-width: 760px;
+      color: rgba(255,255,255,.92);
+      font-size: 18px;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      border: none;
+      cursor: pointer;
+      border-radius: 16px;
+      padding: 14px 22px;
+      font-weight: 800;
+      font-size: 15px;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: var(--blanco);
+      color: var(--azul-900);
+      box-shadow: var(--sombra);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--blanco);
+      border: 1px solid rgba(255,255,255,.5);
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 30px;
+      padding: 26px;
+      box-shadow: var(--sombra);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-card h3 { margin: 8px 0 10px; font-size: 26px; }
+    .hero-card ul { margin: 12px 0 0; padding-left: 18px; line-height: 1.8; }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 20px;
+      padding: 16px;
+      text-align: center;
+    }
+    .stat strong { display: block; font-size: 28px; margin-bottom: 4px; }
+
+    .section { padding: 36px 0; }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.05;
+      margin: 0 0 8px;
+      letter-spacing: -1px;
+    }
+
+    .section-desc {
+      color: var(--gris-700);
+      max-width: 820px;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .cards-4, .cards-5, .cards-3, .cards-2 {
+      display: grid;
+      gap: 18px;
+      margin-top: 24px;
+    }
+    .cards-4 { grid-template-columns: repeat(4, 1fr); }
+    .cards-5 { grid-template-columns: repeat(5, 1fr); }
+    .cards-3 { grid-template-columns: repeat(3, 1fr); }
+    .cards-2 { grid-template-columns: repeat(2, 1fr); }
+
+    .card {
+      background: var(--blanco);
+      border: 1px solid var(--gris-300);
+      border-radius: 28px;
+      padding: 22px;
+      box-shadow: var(--sombra);
+    }
+
+    .team-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 210px;
+    }
+    .team-card::after {
+      content: "";
+      position: absolute;
+      right: -25px;
+      top: -25px;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(212,175,55,.22), transparent);
+    }
+
+    .team-card .team-name { font-size: 28px; font-weight: 900; }
+    .team-card .team-value { color: var(--gris-700); line-height: 1.6; }
+    .team-tag {
+      display: inline-block;
+      background: var(--azul-100);
+      color: var(--azul-900);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .reto-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 380px;
+    }
+    .reto-num { font-size: 13px; font-weight: 900; color: var(--azul-700); text-transform: uppercase; letter-spacing: .12em; }
+    .reto-title { margin: 8px 0; font-size: 24px; font-weight: 900; line-height: 1.05; }
+    .reto-focus { color: var(--gris-700); line-height: 1.55; font-size: 15px; }
+    .microgames { margin-top: 18px; display: grid; gap: 10px; }
+    .microgame {
+      background: #f8fbff;
+      border: 1px solid #dce9f7;
+      border-radius: 15px;
+      padding: 10px 12px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--azul-900);
+    }
+    .reto-footer {
+      margin-top: auto;
+      padding-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+    }
+    .points {
+      background: #fff4d8;
+      color: #7d5f00;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 900;
+    }
+
+    .rules-list, .premio-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .rule, .premio-item {
+      background: var(--gris-100);
+      border: 1px solid var(--gris-300);
+      border-radius: 18px;
+      padding: 14px 16px;
+      line-height: 1.55;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 18px;
+      margin-top: 18px;
+    }
+    thead { background: #edf4fb; }
+    th, td {
+      padding: 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--gris-300);
+      font-size: 14px;
+    }
+    th { font-weight: 900; }
+
+    .scoreboard {
+      background: linear-gradient(135deg, #071a34, #0e2f5d);
+      color: var(--blanco);
+      border-radius: 30px;
+      padding: 28px;
+      box-shadow: var(--sombra);
+    }
+
+    .podio {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr 1fr;
+      gap: 14px;
+      align-items: end;
+      margin-top: 20px;
+    }
+    .podio .step {
+      border-radius: 20px 20px 10px 10px;
+      text-align: center;
+      padding: 18px 12px;
+      font-weight: 900;
+      box-shadow: var(--sombra);
+    }
+    .podio .step:nth-child(1) { background: #cfd8e6; color: #1c2d45; min-height: 130px; }
+    .podio .step:nth-child(2) { background: linear-gradient(180deg, #ffe28c, #d4af37); color: #4b3a00; min-height: 180px; }
+    .podio .step:nth-child(3) { background: #f0c8aa; color: #5f2b0a; min-height: 110px; }
+
+    .bonus-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 20px;
+    }
+    .bonus {
+      background: #ffffff;
+      border: 1px solid var(--gris-300);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: var(--sombra);
+    }
+    .bonus strong { display: block; margin-bottom: 8px; color: var(--azul-700); }
+
+    .footer-cta {
+      background: linear-gradient(135deg, #eaf4ff, #f8fbff);
+      border: 1px solid #c8def6;
+      border-radius: 30px;
+      padding: 26px;
+      margin-top: 22px;
+      box-shadow: var(--sombra);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      background: #edf6ff;
+      color: #0f4477;
+      padding: 8px 12px;
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .mini-note {
+      font-size: 13px;
+      color: var(--gris-700);
+      margin-top: 10px;
+    }
+
+    .form {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .form input, .form select {
+      width: 100%;
+      border: 1px solid #cfe0f2;
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-size: 14px;
+      background: #fbfdff;
+    }
+
+    .footer {
+      padding: 28px 0 50px;
+      color: var(--gris-700);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid, .cards-5, .cards-4, .cards-3, .cards-2, .bonus-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .hero-grid, .cards-5, .cards-4, .cards-3, .cards-2, .bonus-grid, .stats, .podio {
+        grid-template-columns: 1fr;
+      }
+      .hero { padding-top: 28px; }
+      h1 { letter-spacing: -1px; }
+      .container { width: min(100% - 20px, 1180px); }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <div class="badge">🏛️ Teoría Organizacional 2026-1 · Olimpiadas Académicas</div>
+      <div class="hero-grid">
+        <div>
+          <h1>Olimpiadas de Teoría Organizacional</h1>
+          <p>
+            Una experiencia lúdico-constructivista por equipos donde cada reto integra microjuegos,
+            decisiones, análisis, cooperación y competencia sana. Aquí no se memoriza: se aprende jugando,
+            se construye en equipo y se gana con estrategia.
+          </p>
+          <div class="cta-row">
+            <button class="btn btn-primary" onclick="document.getElementById('inscripcion').scrollIntoView({behavior:'smooth'})">Inscribir equipo</button>
+            <button class="btn btn-secondary" onclick="document.getElementById('retos').scrollIntoView({behavior:'smooth'})">Ver retos</button>
+          </div>
+          <div class="stats">
+            <div class="stat"><strong>5</strong>Retos</div>
+            <div class="stat"><strong>25</strong>Microjuegos</div>
+            <div class="stat"><strong>100</strong>Puntos</div>
+          </div>
+        </div>
+        <aside class="hero-card">
+          <div class="pill">🎁 Premio principal</div>
+          <h3>Equipo campeón</h3>
+          <ul>
+            <li>Exoneración de la sustentación oral del mapa mental.</li>
+            <li>Entrega obligatoria del mapa mental.</li>
+            <li>Nota de 5.0 en esta actividad.</li>
+            <li>Nota de 5.0 en el corte uno, según lineamiento docente comunicado previamente.</li>
+          </ul>
+          <p class="mini-note">El beneficio aplica al equipo ganador que participe en todos los retos y cumpla la entrega final.</p>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Identidad de los equipos</h2>
+      <p class="section-desc">
+        La experiencia toma como base la identidad simbólica de los equipos Atenea, Apolo, Ares y Hemera,
+        orientados por valores como sabiduría, claridad, ejecución, transparencia, cooperación intelectual y compromiso colectivo.
+      </p>
+      <div class="cards-4">
+        <article class="card team-card">
+          <div class="team-tag">Equipo 1</div>
+          <div class="team-name">Atenea</div>
+          <p class="team-value">Sabiduría, estrategia y pensamiento crítico para analizar los fenómenos organizacionales.</p>
+        </article>
+        <article class="card team-card">
+          <div class="team-tag">Equipo 2</div>
+          <div class="team-name">Apolo</div>
+          <p class="team-value">Claridad, armonía y comunicación organizacional para dirigir con coherencia institucional.</p>
+        </article>
+        <article class="card team-card">
+          <div class="team-tag">Equipo 3</div>
+          <div class="team-name">Ares</div>
+          <p class="team-value">Acción, determinación y ejecución para llevar las ideas a resultados reales.</p>
+        </article>
+        <article class="card team-card">
+          <div class="team-tag">Equipo 4</div>
+          <div class="team-name">Hemera</div>
+          <p class="team-value">Luz, transparencia y ética para construir confianza y responsabilidad organizacional.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="retos">
+    <div class="container">
+      <h2 class="section-title">Ruta gamificada de los 5 retos</h2>
+      <p class="section-desc">
+        Cada reto es una misión temática con varios microjuegos. El estudiante siente olimpiada, no evaluación tradicional.
+        La secuencia se alinea con Semana 4: empresa, clasificación, recursos y sistemas contables, integrando la empresa moderna en Colombia.
+      </p>
+
+      <div class="cards-5">
+        <article class="card reto-card">
+          <div class="reto-num">Reto 1</div>
+          <div class="reto-title">ADN de la empresa</div>
+          <div class="reto-focus">Definición de empresa, funciones, características, elementos y entorno.</div>
+          <div class="microgames">
+            <div class="microgame">🎯 Opción múltiple flash</div>
+            <div class="microgame">⚡ Falso/Verdadero extremo</div>
+            <div class="microgame">🧩 Emparejamiento visual</div>
+            <div class="microgame">🔤 Ahorcado académico</div>
+            <div class="microgame">🏗️ Mini rompecabezas empresarial</div>
+          </div>
+          <div class="reto-footer"><span>Comprensión inicial</span><span class="points">15 pts</span></div>
+        </article>
+
+        <article class="card reto-card">
+          <div class="reto-num">Reto 2</div>
+          <div class="reto-title">Clasifica o colapsa</div>
+          <div class="reto-focus">Clasificación por origen, actividad, utilidades y tamaño.</div>
+          <div class="microgames">
+            <div class="microgame">🌳 Árbol de decisión</div>
+            <div class="microgame">🗂️ Clasificación arrastrable</div>
+            <div class="microgame">🛤️ Ruta de categorías</div>
+            <div class="microgame">✍️ Crucigrama de taxonomía</div>
+            <div class="microgame">🔠 Ahorcado nivel 2</div>
+          </div>
+          <div class="reto-footer"><span>Taxonomía organizacional</span><span class="points">20 pts</span></div>
+        </article>
+
+        <article class="card reto-card">
+          <div class="reto-num">Reto 3</div>
+          <div class="reto-title">Laboratorio contable</div>
+          <div class="reto-focus">Sistemas contables en empresas industriales, comerciales y de servicios.</div>
+          <div class="microgames">
+            <div class="microgame">🧠 Crucigrama contable</div>
+            <div class="microgame">🐟 Espina de pescado</div>
+            <div class="microgame">🔗 Emparejamiento empresa-sistema</div>
+            <div class="microgame">📦 Mini caso situacional</div>
+            <div class="microgame">⚖️ Tablero de decisión contable</div>
+          </div>
+          <div class="reto-footer"><span>Aplicación práctica</span><span class="points">20 pts</span></div>
+        </article>
+
+        <article class="card reto-card">
+          <div class="reto-num">Reto 4</div>
+          <div class="reto-title">Colombia empresarial</div>
+          <div class="reto-focus">UVT, NIIF, BIC, ERP y cumplimiento en la empresa moderna.</div>
+          <div class="microgames">
+            <div class="microgame">🧮 Conversión UVT</div>
+            <div class="microgame">🌲 Árbol BIC vs cooperativa</div>
+            <div class="microgame">📊 Matriz comparativa</div>
+            <div class="microgame">💻 Ahorcado digital</div>
+            <div class="microgame">🔍 Espina ERP</div>
+          </div>
+          <div class="reto-footer"><span>Conexión con realidad colombiana</span><span class="points">20 pts</span></div>
+        </article>
+
+        <article class="card reto-card">
+          <div class="reto-num">Reto 5</div>
+          <div class="reto-title">Gran misión final</div>
+          <div class="reto-focus">Caso integrador con clasificación, sistema contable, BIC, ERP y decisión estratégica.</div>
+          <div class="microgames">
+            <div class="microgame">🎮 Ruta de movimiento</div>
+            <div class="microgame">📁 Caso final interactivo</div>
+            <div class="microgame">🧭 Matriz DOFA</div>
+            <div class="microgame">⏱️ Defensa sprint</div>
+            <div class="microgame">🎡 Ruleta bonus</div>
+          </div>
+          <div class="reto-footer"><span>Cierre integrador</span><span class="points">25 pts</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container cards-2">
+      <article class="card">
+        <h2 class="section-title" style="font-size:32px;">Rúbrica de evaluación</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Criterio</th>
+              <th>Descripción</th>
+              <th>Peso</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Precisión conceptual</strong></td><td>Comprensión correcta de los contenidos.</td><td><strong>30%</strong></td></tr>
+            <tr><td><strong>Aplicación</strong></td><td>Uso de conceptos en casos, decisiones y juegos.</td><td><strong>25%</strong></td></tr>
+            <tr><td><strong>Trabajo colaborativo</strong></td><td>Coordinación y participación real del equipo.</td><td><strong>20%</strong></td></tr>
+            <tr><td><strong>Pensamiento crítico</strong></td><td>Argumentación, análisis y justificación.</td><td><strong>15%</strong></td></tr>
+            <tr><td><strong>Disciplina y actitud</strong></td><td>Respeto de reglas, tiempos y comportamiento deportivo.</td><td><strong>10%</strong></td></tr>
+          </tbody>
+        </table>
+      </article>
+
+      <article class="card">
+        <h2 class="section-title" style="font-size:32px;">Reglas y condiciones</h2>
+        <div class="rules-list">
+          <div class="rule">Cada reto contiene varios microjuegos y un tiempo máximo definido por estación.</div>
+          <div class="rule">El puntaje se acumula por equipo y se proyecta en un tablero visible para todo el curso.</div>
+          <div class="rule">Cada equipo debe mantener su identidad y resolver colaborativamente las actividades.</div>
+          <div class="rule">Puede incluirse una pregunta dorada o ruleta bonus para desempates o bonificaciones.</div>
+          <div class="rule">La participación activa y el cumplimiento integral son requisito para acceder al premio.</div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container cards-2">
+      <article class="scoreboard">
+        <div class="pill" style="background: rgba(255,255,255,.14); color: white;">📈 Tablero visible</div>
+        <h2 style="font-size: 34px; margin: 14px 0 10px;">Puntuación y podio</h2>
+        <p style="color: rgba(255,255,255,.85); line-height:1.7; margin:0;">
+          Cada estación actualiza el acumulado general. El aula se convierte en una arena académica con ranking,
+          reconocimiento público y motivación permanente.
+        </p>
+        <div class="podio">
+          <div class="step">2° Lugar</div>
+          <div class="step">🏆 1° Lugar</div>
+          <div class="step">3° Lugar</div>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2 class="section-title" style="font-size:32px;">Bonos y comodines</h2>
+        <div class="bonus-grid">
+          <div class="bonus"><strong>Oráculo</strong>Pide una pista breve al docente.</div>
+          <div class="bonus"><strong>Doble impacto</strong>Duplica el valor de una respuesta.</div>
+          <div class="bonus"><strong>Escudo</strong>Evita una penalización.</div>
+          <div class="bonus"><strong>Pregunta dorada</strong>Gana puntos extra o rompe empate.</div>
+        </div>
+        <p class="mini-note">Estos elementos mantienen la emoción y hacen que la experiencia parezca olimpiada y no examen.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container cards-2">
+      <article class="card">
+        <h2 class="section-title" style="font-size:32px;">Premio académico</h2>
+        <div class="premio-list">
+          <div class="premio-item">🏆 Exoneración de la sustentación oral del mapa mental.</div>
+          <div class="premio-item">📌 Entrega obligatoria del mapa mental por parte del equipo ganador.</div>
+          <div class="premio-item">⭐ Nota de 5.0 en la actividad de Olimpiadas.</div>
+          <div class="premio-item">🎓 Nota de 5.0 en el corte uno, según lineamiento previamente comunicado.</div>
+        </div>
+      </article>
+
+      <article class="card" id="inscripcion">
+        <h2 class="section-title" style="font-size:32px;">Inscripción del equipo</h2>
+        <p class="section-desc" style="font-size:15px; max-width:none;">
+          Formulario base visual. En una versión avanzada puede conectarse a Google Sheets, Firebase o un backend.
+        </p>
+        <form class="form" onsubmit="event.preventDefault(); alert('Inscripción simulada. En producción se conecta a formulario o base de datos.');">
+          <input type="text" placeholder="Nombre del vocero del equipo" required />
+          <select required>
+            <option value="">Seleccione equipo</option>
+            <option>Atenea</option>
+            <option>Apolo</option>
+            <option>Ares</option>
+            <option>Hemera</option>
+          </select>
+          <input type="text" placeholder="Integrantes o código del curso" required />
+          <input type="email" placeholder="Correo o contacto del vocero" required />
+          <button class="btn btn-primary" type="submit">Registrar equipo</button>
+        </form>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="footer-cta">
+        <div class="pill">🧠 Enfoque pedagógico</div>
+        <h2 class="section-title" style="font-size:34px; margin-top:12px;">Clase constructivista, lúdica y memorable</h2>
+        <p class="section-desc" style="max-width: 980px; margin-top: 10px;">
+          Las Olimpiadas de Teoría Organizacional convierten la clase en una experiencia viva: juego, identidad, análisis,
+          cooperación, estrategia y recompensa académica. El contenido de empresa, clasificación y sistemas contables se
+          transforma en una ruta activa donde el estudiante aprende haciendo y el equipo gana pensando.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    Profesor Néstor Pizarro · Teoría Organizacional 2026-1 · InspiraMente Blog
+  </footer>
+
+  <script>
+    // Espacio para lógica futura: scoreboard, cronómetro, persistencia o microjuegos.
+    console.log('Landing base lista para evolucionar a una versión con juegos interactivos.');
+  </script>
+</body>
+</html>
