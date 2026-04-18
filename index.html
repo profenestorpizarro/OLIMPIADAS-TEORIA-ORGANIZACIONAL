@@ -417,21 +417,25 @@
       <div class="cards-4">
         <article class="card team-card">
           <div class="team-tag">Equipo 1</div>
+          <div style="font-size:40px; margin-bottom:8px;">🦉</div>
           <div class="team-name">Atenea</div>
           <p class="team-value">Sabiduría, estrategia y pensamiento crítico para analizar los fenómenos organizacionales.</p>
         </article>
         <article class="card team-card">
           <div class="team-tag">Equipo 2</div>
+          <div style="font-size:40px; margin-bottom:8px;">☀️</div>
           <div class="team-name">Apolo</div>
           <p class="team-value">Claridad, armonía y comunicación organizacional para dirigir con coherencia institucional.</p>
         </article>
         <article class="card team-card">
           <div class="team-tag">Equipo 3</div>
+          <div style="font-size:40px; margin-bottom:8px;">⚔️</div>
           <div class="team-name">Ares</div>
           <p class="team-value">Acción, determinación y ejecución para llevar las ideas a resultados reales.</p>
         </article>
         <article class="card team-card">
           <div class="team-tag">Equipo 4</div>
+          <div style="font-size:40px; margin-bottom:8px;">🌅</div>
           <div class="team-name">Hemera</div>
           <p class="team-value">Luz, transparencia y ética para construir confianza y responsabilidad organizacional.</p>
         </article>
@@ -566,21 +570,22 @@
           reconocimiento público y motivación permanente.
         </p>
         <div class="podio">
-          <div class="step">2° Lugar</div>
-          <div class="step">🏆 1° Lugar</div>
-          <div class="step">3° Lugar</div>
+          <div class="step" style="background:#cfd8e6; color:#1c2d45; min-height:140px;">🥈 2° Lugar<br><small>Plata</small></div>
+          <div class="step" style="background:linear-gradient(180deg,#ffe28c,#d4af37); color:#4b3a00; min-height:210px;">🥇 1° Lugar<br><small>Oro</small></div>
+          <div class="step" style="background:#d59a6a; color:#4b2400; min-height:120px;">🥉 3° Lugar<br><small>Cobre</small></div>
         </div>
+        <div style="margin-top:14px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); border-radius:18px; padding:14px; text-align:center; font-weight:800;">🪵 4° Lugar · Madera</div>
       </article>
 
       <article class="card">
         <h2 class="section-title" style="font-size:32px;">Bonos y comodines</h2>
         <div class="bonus-grid">
-          <div class="bonus"><strong>Oráculo</strong>Pide una pista breve al docente.</div>
-          <div class="bonus"><strong>Doble impacto</strong>Duplica el valor de una respuesta.</div>
-          <div class="bonus"><strong>Escudo</strong>Evita una penalización.</div>
-          <div class="bonus"><strong>Pregunta dorada</strong>Gana puntos extra o rompe empate.</div>
+          <div class="bonus"><strong>Oráculo del reto</strong>Pista automática integrada en el juego después de un intento fallido.</div>
+          <div class="bonus"><strong>Doble impacto</strong>Duplica el valor de una respuesta correcta en una estación.</div>
+          <div class="bonus"><strong>Escudo</strong>Evita una penalización por error o por tiempo en una sola ocasión.</div>
+          <div class="bonus"><strong>Pregunta dorada</strong>Gana puntos extra o rompe empate al final de un reto.</div>
         </div>
-        <p class="mini-note">Estos elementos mantienen la emoción y hacen que la experiencia parezca olimpiada y no examen.</p>
+        <p class="mini-note">Los comodines funcionan sin intervención del docente, reforzando una experiencia autónoma y constructivista.</p>
       </article>
     </div>
   </section>
@@ -600,19 +605,16 @@
       <article class="card" id="inscripcion">
         <h2 class="section-title" style="font-size:32px;">Inscripción del equipo</h2>
         <p class="section-desc" style="font-size:15px; max-width:none;">
-          Formulario base visual. En una versión avanzada puede conectarse a Google Sheets, Firebase o un backend.
+          Un solo integrante registra y manipula el desarrollo del juego en representación de su equipo, con apoyo de todos los demás integrantes.
         </p>
         <form class="form" onsubmit="event.preventDefault(); alert('Inscripción simulada. En producción se conecta a formulario o base de datos.');">
-          <input type="text" placeholder="Nombre del vocero del equipo" required />
           <select required>
             <option value="">Seleccione equipo</option>
-            <option>Atenea</option>
-            <option>Apolo</option>
-            <option>Ares</option>
-            <option>Hemera</option>
+            <option>🦉 Equipo 1 · Atenea</option>
+            <option>☀️ Equipo 2 · Apolo</option>
+            <option>⚔️ Equipo 3 · Ares</option>
+            <option>🌅 Equipo 4 · Hemera</option>
           </select>
-          <input type="text" placeholder="Integrantes o código del curso" required />
-          <input type="email" placeholder="Correo o contacto del vocero" required />
           <button class="btn btn-primary" type="submit">Registrar equipo</button>
         </form>
       </article>
@@ -633,8 +635,23 @@
     </div>
   </section>
 
+  <section class="section">
+    <div class="container">
+      <div class="footer-cta">
+        <div class="pill">🌐 Presencia digital del Profesor Néstor</div>
+        <h2 class="section-title" style="font-size:32px; margin-top:12px;">Conecta con InspiraMente y el ecosistema digital</h2>
+        <div class="cards-4" style="margin-top:18px;">
+          <a class="card" href="https://nestorpizarr0.blogspot.com" target="_blank"><strong>📝 InspiraMente Blog</strong><br><span class="mini-note">Lecturas, reflexión y contenido base.</span></a>
+          <a class="card" href="https://facebook.com/nest.pizarro" target="_blank"><strong>📘 Facebook personal</strong><br><span class="mini-note">Comunidad y conexión directa.</span></a>
+          <a class="card" href="https://facebook.com/profesornestorpizarro" target="_blank"><strong>📣 Facebook Page</strong><br><span class="mini-note">Difusión académica y marca docente.</span></a>
+          <a class="card" href="https://www.tiktok.com/@nestorpizarr0" target="_blank"><strong>🎵 TikTok</strong><br><span class="mini-note">Contenido breve y posicionamiento digital.</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer class="footer">
-    Profesor Néstor Pizarro · Teoría Organizacional 2026-1 · InspiraMente Blog
+    Profesor Néstor Pizarro · Teoría Organizacional 2026-1 · InspiraMente Blog · Facebook · Facebook Page · TikTok
   </footer>
 
   <script>
