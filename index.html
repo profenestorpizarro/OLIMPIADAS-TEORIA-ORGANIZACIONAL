@@ -1,697 +1,1798 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Olimpiadas de Teoría Organizacional 2026-1</title>
-  <style>
-    :root {
-      --bg: #0f1226;
-      --bg-2: #171b37;
-      --panel: rgba(255,255,255,0.10);
-      --panel-strong: rgba(255,255,255,0.16);
-      --white: #ffffff;
-      --text-soft: rgba(255,255,255,0.82);
-      --yellow: #ffd84d;
-      --gold: #ffbf1a;
-      --silver: #cfe3ff;
-      --bronze: #d98a4e;
-      --wood: #8b5a2b;
-      --pink: #ff4fbf;
-      --cyan: #38d9ff;
-      --green: #4cff9a;
-      --purple: #8b5cf6;
-      --shadow: 0 20px 60px rgba(0,0,0,0.32);
-      --radius: 28px;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olimpiadas Teoría Organizacional</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+```
+    html, body {
+        width: 100%;
+        height: 100%;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
     body {
-      margin: 0;
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      background:
-        radial-gradient(circle at 20% 10%, rgba(56,217,255,.18), transparent 25%),
-        radial-gradient(circle at 80% 0%, rgba(255,79,191,.18), transparent 22%),
-        radial-gradient(circle at 50% 100%, rgba(76,255,154,.12), transparent 28%),
-        linear-gradient(180deg, #0c1022 0%, #15193a 55%, #101428 100%);
-      color: var(--white);
+        transition: background-color 0.3s ease;
     }
 
-    a { color: inherit; text-decoration: none; }
-    .container { width: min(1220px, calc(100% - 24px)); margin: 0 auto; }
-
-    .hero {
-      padding: 30px 0 44px;
-      position: relative;
-      overflow: hidden;
+    body.dark-mode {
+        background: linear-gradient(135deg, #0f172a 0%, #0f172a 50%, #0f172a 100%);
+        color: #fff;
     }
 
-    .hero::before,
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: auto;
-      width: 280px;
-      height: 280px;
-      border-radius: 50%;
-      filter: blur(50px);
-      opacity: .4;
-      pointer-events: none;
-    }
-    .hero::before { background: var(--pink); top: -60px; right: -60px; }
-    .hero::after { background: var(--cyan); left: -80px; top: 80px; }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--panel);
-      border: 1px solid rgba(255,255,255,.18);
-      padding: 10px 16px;
-      border-radius: 999px;
-      font-size: 14px;
-      font-weight: 800;
-      backdrop-filter: blur(12px);
-      box-shadow: var(--shadow);
+    body.light-mode {
+        background: linear-gradient(135deg, #eff2f5 0%, #f3e8ff 50%, #fce7f3 100%);
+        color: #000;
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 24px;
-      align-items: center;
-      margin-top: 18px;
+    .container {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
-    h1 {
-      font-size: clamp(42px, 7vw, 82px);
-      line-height: .92;
-      margin: 14px 0 14px;
-      letter-spacing: -2.6px;
-      font-weight: 900;
-      text-wrap: balance;
+    .screen {
+        display: none;
+        flex: 1;
+        animation: fadeIn 0.3s ease;
     }
 
-    .hero p {
-      max-width: 780px;
-      color: var(--text-soft);
-      font-size: clamp(18px, 2vw, 22px);
-      line-height: 1.55;
-      margin: 0;
+    .screen.active {
+        display: flex;
     }
 
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 26px;
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
     }
 
-    .btn {
-      border: none;
-      cursor: pointer;
-      border-radius: 20px;
-      padding: 16px 24px;
-      font-weight: 900;
-      font-size: 16px;
-      transition: transform .18s ease, box-shadow .18s ease;
-      box-shadow: var(--shadow);
+    /* HEADER */
+    .header-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        gap: 1rem;
+        flex-wrap: wrap;
     }
-    .btn:hover { transform: translateY(-2px) scale(1.01); }
+
+    .btn-toggle {
+        padding: 0.75rem;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        font-size: 1.5rem;
+        transition: transform 0.3s;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+    }
+
+    body.dark-mode .btn-toggle {
+        background: #fbbf24;
+        color: #111;
+    }
+
+    body.light-mode .btn-toggle {
+        background: #1f2937;
+        color: #fcd34d;
+    }
+
+    .btn-toggle:hover {
+        transform: scale(1.1);
+    }
+
+    .btn-toggle:active {
+        transform: scale(0.95);
+    }
+
+    /* PANTALLA INICIO */
+    #pantallaInicio {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .titulo-principal {
+        font-size: clamp(2rem, 8vw, 3.5rem);
+        font-weight: 900;
+        background: linear-gradient(90deg, #3b82f6, #a855f7, #ec4899);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1rem;
+        line-height: 1.1;
+    }
+
+    .subtitulo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+    }
+
+    body.dark-mode .subtitulo {
+        color: #c084fc;
+    }
+
+    body.light-mode .subtitulo {
+        color: #9333ea;
+    }
+
+    .descripcion {
+        font-size: 1.125rem;
+        margin: 2rem auto;
+        max-width: 32rem;
+        line-height: 1.6;
+    }
+
+    body.dark-mode .descripcion {
+        color: #d1d5db;
+    }
+
+    body.light-mode .descripcion {
+        color: #374151;
+    }
+
     .btn-primary {
-      background: linear-gradient(135deg, var(--yellow), var(--gold));
-      color: #342400;
+        width: 100%;
+        max-width: 28rem;
+        margin: 0 auto 1rem;
+        padding: 1.5rem 2rem;
+        background: linear-gradient(90deg, #2563eb, #9333ea);
+        color: white;
+        border: none;
+        border-radius: 1rem;
+        font-size: 1.25rem;
+        font-weight: 900;
+        cursor: pointer;
+        transition: all 0.3s;
+        box-shadow: 0 20px 25px rgba(0,0,0,0.2);
     }
+
+    .btn-primary:hover {
+        transform: scale(1.05);
+    }
+
+    .btn-primary:active {
+        transform: scale(0.95);
+    }
+
     .btn-secondary {
-      background: var(--panel);
-      color: var(--white);
-      border: 1px solid rgba(255,255,255,.2);
-      backdrop-filter: blur(10px);
+        width: 100%;
+        max-width: 28rem;
+        margin: 0 auto;
+        padding: 1rem;
+        border: none;
+        border-radius: 0.75rem;
+        font-weight: 900;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s;
     }
 
-    .hero-card,
-    .card,
-    .scoreboard,
-    .footer-cta {
-      background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.08));
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: 30px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(14px);
+    body.dark-mode .btn-secondary {
+        background: #1f2937;
+        color: white;
     }
 
-    .hero-card { padding: 26px; }
-    .hero-card h3 { margin: 10px 0 12px; font-size: 30px; }
-    .hero-card ul { margin: 12px 0 0; padding-left: 18px; line-height: 1.85; color: var(--text-soft); }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 22px;
-    }
-    .stat {
-      background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.08));
-      border: 1px solid rgba(255,255,255,.14);
-      border-radius: 24px;
-      padding: 18px 16px;
-      text-align: center;
-      box-shadow: var(--shadow);
-    }
-    .stat strong { display: block; font-size: 32px; margin-bottom: 4px; }
-
-    .section { padding: 34px 0; }
-    .section-title {
-      font-size: clamp(30px, 5vw, 52px);
-      line-height: 1;
-      margin: 0 0 10px;
-      letter-spacing: -1.5px;
-      font-weight: 900;
-      text-wrap: balance;
-    }
-    .section-desc {
-      color: var(--text-soft);
-      max-width: 860px;
-      line-height: 1.7;
-      margin: 0;
-      font-size: 17px;
+    body.light-mode .btn-secondary {
+        background: #dbeafe;
+        color: #111;
     }
 
-    .cards-4, .cards-5, .cards-3, .cards-2 {
-      display: grid;
-      gap: 18px;
-      margin-top: 24px;
-    }
-    .cards-4 { grid-template-columns: repeat(4, 1fr); }
-    .cards-5 { grid-template-columns: repeat(5, 1fr); }
-    .cards-3 { grid-template-columns: repeat(3, 1fr); }
-    .cards-2 { grid-template-columns: repeat(2, 1fr); }
-
-    .card { padding: 22px; }
-
-    .team-card {
-      position: relative;
-      overflow: hidden;
-      min-height: 230px;
-      background:
-        radial-gradient(circle at top right, rgba(255,216,77,.18), transparent 30%),
-        linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.08));
-    }
-    .team-card::after {
-      content: "";
-      position: absolute;
-      right: -10px;
-      bottom: -10px;
-      width: 110px;
-      height: 110px;
-      border-radius: 30px;
-      background: linear-gradient(135deg, rgba(255,255,255,.15), transparent);
-      transform: rotate(18deg);
+    /* MODAL */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.75);
+        z-index: 50;
+        align-items: center;
+        justify-content: center;
     }
 
-    .team-card .team-name { font-size: 30px; font-weight: 900; }
-    .team-card .team-value { color: var(--text-soft); line-height: 1.6; font-size: 15px; }
-    .team-tag,
-    .pill,
-    .points {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border-radius: 999px;
-      padding: 8px 12px;
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: .02em;
-    }
-    .team-tag { background: rgba(255,216,77,.15); color: #ffe89a; border: 1px solid rgba(255,216,77,.26); }
-    .pill { background: rgba(56,217,255,.12); color: #a9f0ff; border: 1px solid rgba(56,217,255,.18); }
-    .points { background: rgba(255,79,191,.14); color: #ffb3e2; border: 1px solid rgba(255,79,191,.18); }
-
-    .reto-card {
-      display: flex;
-      flex-direction: column;
-      min-height: 420px;
-      position: relative;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 100% 0%, rgba(139,92,246,.18), transparent 30%),
-        linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.07));
-    }
-    .reto-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, transparent 70%, rgba(255,255,255,.06));
-      pointer-events: none;
-    }
-    .reto-num { font-size: 12px; font-weight: 900; color: #a9f0ff; text-transform: uppercase; letter-spacing: .14em; }
-    .reto-title { margin: 10px 0; font-size: 28px; font-weight: 900; line-height: 1.02; }
-    .reto-focus { color: var(--text-soft); line-height: 1.58; font-size: 15px; }
-    .microgames { margin-top: 18px; display: grid; gap: 10px; }
-    .microgame {
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 18px;
-      padding: 11px 13px;
-      font-size: 14px;
-      font-weight: 800;
-      color: var(--white);
-    }
-    .reto-footer {
-      margin-top: auto;
-      padding-top: 18px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      color: var(--text-soft);
+    .modal.active {
+        display: flex;
     }
 
-    .rules-list, .premio-list { display: grid; gap: 12px; margin-top: 18px; }
-    .rule, .premio-item, .bonus {
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 18px;
-      padding: 14px 16px;
-      line-height: 1.55;
-      color: var(--white);
+    .modal-content {
+        width: 90%;
+        max-width: 28rem;
+        max-height: 24rem;
+        overflow-y: auto;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        box-shadow: 0 20px 25px rgba(0,0,0,0.5);
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      overflow: hidden;
-      border-radius: 20px;
-      margin-top: 18px;
-      background: rgba(255,255,255,.06);
+    body.dark-mode .modal-content {
+        background: #111827;
     }
-    thead { background: rgba(255,255,255,.08); }
-    th, td {
-      padding: 14px;
-      text-align: left;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      font-size: 14px;
-      color: var(--white);
-    }
-    td { color: var(--text-soft); }
-    th { font-weight: 900; color: var(--white); }
 
-    .scoreboard { padding: 28px; position: relative; overflow: hidden; }
-    .scoreboard::before {
-      content: "";
-      position: absolute;
-      inset: -80px auto auto -80px;
-      width: 240px;
-      height: 240px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(56,217,255,.2), transparent 70%);
-      pointer-events: none;
+    body.light-mode .modal-content {
+        background: white;
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .modal-header h2 {
+        font-size: 1.5rem;
+        font-weight: 900;
+    }
+
+    body.dark-mode .modal-header h2 {
+        color: white;
+    }
+
+    body.light-mode .modal-header h2 {
+        color: #111;
+    }
+
+    .btn-close {
+        padding: 0.5rem;
+        background: #dc2626;
+        color: white;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+
+    .glosario-items {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .glosario-item {
+        padding: 1rem;
+        border-radius: 0.5rem;
+    }
+
+    body.dark-mode .glosario-item {
+        background: #1f2937;
+    }
+
+    body.light-mode .glosario-item {
+        background: #f3f4f6;
+    }
+
+    .glosario-term {
+        font-weight: 900;
+        color: #3b82f6;
+        font-size: 0.875rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .glosario-def {
+        font-size: 0.875rem;
+    }
+
+    body.dark-mode .glosario-def {
+        color: #d1d5db;
+    }
+
+    body.light-mode .glosario-def {
+        color: #374151;
+    }
+
+    /* PANTALLA SELECCIÓN */
+    #pantallaSeleccion {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .seleccion-header {
+        text-align: center;
+    }
+
+    .seleccion-header h1 {
+        font-size: 1.875rem;
+        font-weight: 900;
+    }
+
+    .equipos-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .btn-equipo {
+        padding: 1.5rem 1rem;
+        border: 4px solid;
+        border-radius: 1rem;
+        font-weight: 900;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-align: center;
+        background: linear-gradient(135deg, var(--color-from), var(--color-to));
+    }
+
+    .btn-equipo:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    .btn-equipo:not(:disabled):hover {
+        transform: scale(1.1);
+    }
+
+    .btn-equipo:active {
+        transform: scale(0.95);
+    }
+
+    .equipo-icono {
+        font-size: 2.5rem;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .equipo-nombre {
+        font-size: 1rem;
+        display: block;
+    }
+
+    .ya-jugo {
+        font-size: 0.7rem;
+        margin-top: 0.3rem;
+    }
+
+    .marcador-general {
+        padding: 1.5rem;
+        border-radius: 1rem;
+        border: 2px solid #9333ea;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    }
+
+    body.dark-mode .marcador-general {
+        background: #1f2937;
+    }
+
+    body.light-mode .marcador-general {
+        background: white;
+    }
+
+    .marcador-title {
+        font-weight: 900;
+        margin-bottom: 1rem;
+        font-size: 1.125rem;
+    }
+
+    body.dark-mode .marcador-title {
+        color: white;
+    }
+
+    body.light-mode .marcador-title {
+        color: #111;
+    }
+
+    .marcador-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 0.75rem;
+    }
+
+    .marcador-card {
+        padding: 1rem;
+        border-radius: 0.75rem;
+        border: 2px solid #666;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    body.dark-mode .marcador-card {
+        background: #374151;
+    }
+
+    body.light-mode .marcador-card {
+        background: #f3f4f6;
+    }
+
+    .marcador-icono {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .marcador-nombre {
+        font-size: 0.875rem;
+        font-weight: 900;
+        margin-bottom: 0.5rem;
+    }
+
+    .marcador-puntos {
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: #fbbf24;
+    }
+
+    /* PANTALLA RETO */
+    #pantallaReto {
+        flex-direction: column;
+    }
+
+    .reto-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .btn-atras {
+        padding: 0.75rem;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        font-size: 1.25rem;
+        transition: all 0.3s;
+    }
+
+    body.dark-mode .btn-atras:not(:disabled) {
+        background: #dc2626;
+        color: white;
+    }
+
+    body.light-mode .btn-atras:not(:disabled) {
+        background: #ef4444;
+        color: white;
+    }
+
+    .btn-atras:disabled {
+        background: #4b5563;
+        color: #9ca3af;
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+    .equipo-info {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        background: linear-gradient(90deg, #4c1d95, #1e1b4b);
+        padding: 0.5rem 1rem;
+        border-radius: 0.75rem;
+        color: white;
+    }
+
+    .equipo-info-icono {
+        font-size: 1.5rem;
+    }
+
+    .equipo-info-nombre {
+        font-size: 0.75rem;
+        font-weight: 900;
+        color: #c4b5fd;
+    }
+
+    .equipo-info-puntos {
+        font-size: 1.25rem;
+        font-weight: 900;
+        color: #fbbf24;
+    }
+
+    .timer {
+        font-weight: 900;
+        padding: 0.75rem 1.25rem;
+        border-radius: 0.75rem;
+        font-size: 1.125rem;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .timer.verde {
+        background: #22c55e;
+        color: white;
+    }
+
+    .timer.amarillo {
+        background: #eab308;
+        color: black;
+    }
+
+    .timer.rojo {
+        background: #ef4444;
+        color: white;
+    }
+
+    .progreso-card {
+        padding: 1rem;
+        border-radius: 0.75rem;
+        border: 2px solid #9333ea;
+        margin-bottom: 1rem;
+    }
+
+    body.dark-mode .progreso-card {
+        background: #1f2937;
+    }
+
+    body.light-mode .progreso-card {
+        background: white;
+    }
+
+    .progreso-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 900;
+    }
+
+    body.dark-mode .progreso-header {
+        color: #d1d5db;
+    }
+
+    body.light-mode .progreso-header {
+        color: #374151;
+    }
+
+    .progreso-bar {
+        width: 100%;
+        height: 0.75rem;
+        background: #4b5563;
+        border-radius: 9999px;
+        overflow: hidden;
+    }
+
+    .progreso-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #3b82f6, #a855f7, #ec4899);
+        transition: width 0.3s;
+    }
+
+    .modulo-card {
+        padding: 1rem;
+        border-radius: 0.75rem;
+        border: 2px solid #9333ea;
+        margin-bottom: 1rem;
+        background: linear-gradient(90deg, #4c1d95, #1e1b4b);
+    }
+
+    .modulo-card h2 {
+        font-size: 1.125rem;
+        font-weight: 900;
+        color: white;
+    }
+
+    .reto-contenido {
+        flex: 1;
+        overflow-y: auto;
+        margin-bottom: 1rem;
+        padding-right: 0.5rem;
+    }
+
+    .reto-box {
+        background: linear-gradient(135deg, #1e293b, #0f172a);
+        padding: 2rem;
+        border-radius: 1.5rem;
+        border: 4px solid #9333ea;
+        box-shadow: 0 20px 25px rgba(0,0,0,0.3);
+    }
+
+    body.light-mode .reto-box {
+        background: white;
+        color: #111;
+    }
+
+    .reto-emoji {
+        font-size: 3.5rem;
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .reto-pregunta {
+        font-size: clamp(1.125rem, 3vw, 1.5rem);
+        font-weight: 900;
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    body.dark-mode .reto-pregunta {
+        color: white;
+    }
+
+    body.light-mode .reto-pregunta {
+        color: #111;
+    }
+
+    .badge-puntos {
+        display: block;
+        margin: 0 auto 1.5rem;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.75rem;
+        font-weight: 900;
+        border: 2px solid;
+        background: linear-gradient(90deg, #b84600, #dc2626);
+        border-color: #fbbf24;
+        color: white;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        width: fit-content;
+    }
+
+    body.light-mode .badge-puntos {
+        background: linear-gradient(90deg, #fcd34d, #f97316);
+        border-color: #ea580c;
+        color: #111;
+    }
+
+    .badge-label {
+        font-size: 0.875rem;
+        display: block;
+    }
+
+    .badge-valor {
+        font-size: 1.875rem;
+        display: block;
+    }
+
+    .opciones-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .btn-opcion {
+        padding: 1rem;
+        border-radius: 0.75rem;
+        font-weight: 900;
+        border: none;
+        cursor: pointer;
+        text-align: left;
+        transition: all 0.3s;
+        font-size: 1rem;
+    }
+
+    body.dark-mode .btn-opcion {
+        background: #475569;
+        color: white;
+    }
+
+    body.dark-mode .btn-opcion:hover:not(:disabled) {
+        background: #64748b;
+    }
+
+    body.light-mode .btn-opcion {
+        background: #e5e7eb;
+        color: #111;
+    }
+
+    body.light-mode .btn-opcion:hover:not(:disabled) {
+        background: #d1d5db;
+    }
+
+    .btn-opcion:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    .retroalimentacion {
+        padding: 1.5rem;
+        border-radius: 0.75rem;
+        border: 4px solid;
+        margin-bottom: 1rem;
+    }
+
+    .retroalimentacion.correcta {
+        background: #064e3b;
+        border-color: #059669;
+    }
+
+    .retroalimentacion.incorrecta {
+        background: #7f1d1d;
+        border-color: #dc2626;
+    }
+
+    body.light-mode .retroalimentacion.correcta {
+        background: #dcfce7;
+        border-color: #059669;
+        color: #374151;
+    }
+
+    body.light-mode .retroalimentacion.incorrecta {
+        background: #fee2e2;
+        border-color: #dc2626;
+        color: #374151;
+    }
+
+    .retroalimentacion-titulo {
+        font-size: 1.5rem;
+        font-weight: 900;
+        margin-bottom: 0.75rem;
+    }
+
+    .retroalimentacion.correcta .retroalimentacion-titulo {
+        color: #86efac;
+    }
+
+    .retroalimentacion.incorrecta .retroalimentacion-titulo {
+        color: #fca5a5;
+    }
+
+    body.light-mode .retroalimentacion.correcta .retroalimentacion-titulo {
+        color: #16a34a;
+    }
+
+    body.light-mode .retroalimentacion.incorrecta .retroalimentacion-titulo {
+        color: #dc2626;
+    }
+
+    .retroalimentacion-texto {
+        font-size: 0.875rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.5;
+    }
+
+    body.dark-mode .retroalimentacion-texto {
+        color: #d1d5db;
+    }
+
+    .mensaje-edicion {
+        font-size: 0.75rem;
+        font-weight: 900;
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+        margin-top: 0.5rem;
+        background: #9333ea;
+        color: white;
+    }
+
+    .botones-nav {
+        display: flex;
+        gap: 0.75rem;
+    }
+
+    .btn-nav {
+        flex: 1;
+        padding: 0.75rem 1rem;
+        border: none;
+        border-radius: 0.75rem;
+        font-weight: 900;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 1rem;
+    }
+
+    .btn-nav.atras {
+        background: linear-gradient(90deg, #ea580c, #f97316);
+    }
+
+    .btn-nav.siguiente {
+        background: linear-gradient(90deg, #2563eb, #9333ea);
+    }
+
+    .btn-nav:not(:disabled):hover {
+        transform: scale(1.05);
+    }
+
+    .btn-nav:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    /* PANTALLA MÓDULO COMPLETADO */
+    .modulo-completado {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modulo-emoji {
+        font-size: 5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .modulo-completado h2 {
+        font-size: 2rem;
+        font-weight: 900;
+        margin-bottom: 2rem;
+    }
+
+    /* PANTALLA RESULTADO */
+    #pantallaResultado {
+        flex-direction: column;
+    }
+
+    .resultado-contenedor {
+        flex: 1;
+        overflow-y: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+    }
+
+    .resultado-card {
+        width: 100%;
+        text-align: center;
+    }
+
+    .resultado-titulo {
+        font-size: clamp(1.875rem, 6vw, 2.5rem);
+        font-weight: 900;
+        background: linear-gradient(90deg, #3b82f6, #a855f7, #ec4899);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 2rem;
     }
 
     .podio {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr 1fr 0.9fr;
-      gap: 14px;
-      align-items: end;
-      margin-top: 26px;
-    }
-    .medal-step {
-      border-radius: 28px 28px 14px 14px;
-      text-align: center;
-      padding: 16px 12px;
-      font-weight: 900;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(255,255,255,.18);
-      position: relative;
-      overflow: hidden;
-    }
-    .medal-step::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(255,255,255,.25), transparent 35%);
-      pointer-events: none;
-    }
-    .medal-step .medal { font-size: 40px; display:block; margin-bottom: 10px; }
-    .medal-step .place { font-size: 22px; }
-    .medal-step .name { font-size: 13px; opacity: .9; margin-top: 4px; }
-    .place-1 { background: linear-gradient(180deg, #ffe58f, #ffbf1a); color: #503600; min-height: 220px; }
-    .place-2 { background: linear-gradient(180deg, #ebf3ff, #b8cdea); color: #24364c; min-height: 170px; }
-    .place-3 { background: linear-gradient(180deg, #efbb8f, #c47c48); color: #492407; min-height: 135px; }
-    .place-4 { background: linear-gradient(180deg, #c8a17b, #8b5a2b); color: #fff4df; min-height: 100px; }
-
-    .bonus-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      margin-top: 20px;
-    }
-    .bonus strong { display: block; margin-bottom: 8px; color: #a9f0ff; }
-
-    .footer-cta { padding: 26px; }
-    .mini-note { font-size: 13px; color: var(--text-soft); margin-top: 10px; }
-
-    .form { display: grid; gap: 12px; margin-top: 18px; }
-    .form input, .form select {
-      width: 100%;
-      border: 1px solid rgba(255,255,255,.16);
-      border-radius: 18px;
-      padding: 14px 16px;
-      font-size: 15px;
-      background: rgba(255,255,255,.08);
-      color: var(--white);
-      backdrop-filter: blur(8px);
-    }
-    .form option { color: #111; }
-
-    .footer { padding: 28px 0 50px; color: var(--text-soft); font-size: 14px; text-align: center; }
-
-    @media (max-width: 1100px) {
-      .hero-grid, .cards-5, .cards-4, .cards-3, .cards-2, .bonus-grid { grid-template-columns: 1fr 1fr; }
-      .podio { grid-template-columns: 1fr 1fr; }
+        padding: 2rem;
+        border-radius: 1.5rem;
+        border: 4px solid #9333ea;
+        margin-bottom: 2rem;
+        box-shadow: 0 20px 25px rgba(0,0,0,0.2);
     }
 
-    @media (max-width: 760px) {
-      .hero-grid, .cards-5, .cards-4, .cards-3, .cards-2, .bonus-grid, .stats, .podio { grid-template-columns: 1fr; }
-      .hero { padding-top: 24px; }
-      .container { width: min(100% - 18px, 1220px); }
-      .reto-card { min-height: auto; }
+    body.dark-mode .podio {
+        background: linear-gradient(180deg, #1f2937, #111827);
     }
-  </style>
+
+    body.light-mode .podio {
+        background: linear-gradient(180deg, #dbeafe, #f3e8ff);
+    }
+
+    .podio-titulo {
+        font-size: 1.5rem;
+        font-weight: 900;
+        margin-bottom: 1.5rem;
+    }
+
+    body.dark-mode .podio-titulo {
+        color: white;
+    }
+
+    body.light-mode .podio-titulo {
+        color: #111;
+    }
+
+    .podio-items {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .podio-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem;
+        border-radius: 0.75rem;
+        border: 4px solid;
+    }
+
+    .podio-item.primero {
+        background: linear-gradient(90deg, #b84600, #f97316);
+        border-color: #fbbf24;
+    }
+
+    .podio-item.segundo {
+        background: linear-gradient(90deg, #4b5563, #374151);
+        border-color: #9ca3af;
+    }
+
+    .podio-item.tercero {
+        background: linear-gradient(90deg, #b84600, #dc2626);
+        border-color: #f97316;
+    }
+
+    .podio-item.cuarto {
+        background: #1f2937;
+        border-color: #4b5563;
+        color: #d1d5db;
+    }
+
+    body.light-mode .podio-item.primero {
+        background: linear-gradient(90deg, #fbbf24, #fcd34d);
+        border-color: #f59e0b;
+        color: #b84600;
+    }
+
+    body.light-mode .podio-item.segundo {
+        background: linear-gradient(90deg, #d1d5db, #f3f4f6);
+        border-color: #9ca3af;
+        color: #374151;
+    }
+
+    body.light-mode .podio-item.tercero {
+        background: linear-gradient(90deg, #fed7aa, #fdba74);
+        border-color: #f97316;
+        color: #b84600;
+    }
+
+    body.light-mode .podio-item.cuarto {
+        background: #f3f4f6;
+        border-color: #9ca3af;
+        color: #374151;
+    }
+
+    .podio-izq {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .podio-medalla {
+        font-size: 2.5rem;
+    }
+
+    .podio-nombre {
+        text-align: left;
+    }
+
+    .podio-nombre-icono {
+        font-size: 1.5rem;
+    }
+
+    .podio-nombre-texto {
+        font-size: 1.125rem;
+        font-weight: 900;
+        display: block;
+    }
+
+    .podio-puntos {
+        font-size: 2rem;
+        font-weight: 900;
+        color: #fbbf24;
+    }
+
+    body.light-mode .podio-puntos {
+        color: #b84600;
+    }
+
+    .puntaje-total {
+        padding: 1.5rem;
+        border-radius: 0.75rem;
+        border: 2px solid #9333ea;
+        background: linear-gradient(90deg, #4c1d95, #1e1b4b);
+        margin-bottom: 1rem;
+    }
+
+    body.light-mode .puntaje-total {
+        background: linear-gradient(90deg, #ddd6fe, #e9d5ff);
+        border-color: #9333ea;
+    }
+
+    .puntaje-label {
+        font-size: 0.875rem;
+        font-weight: 900;
+        color: #c4b5fd;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    body.light-mode .puntaje-label {
+        color: #6b21a8;
+    }
+
+    .puntaje-valor {
+        font-size: 3rem;
+        font-weight: 900;
+        color: #fbbf24;
+    }
+
+    body.light-mode .puntaje-valor {
+        color: #7c2d12;
+    }
+
+    .resultado-mensaje {
+        font-size: 1.125rem;
+        margin-bottom: 2rem;
+    }
+
+    body.dark-mode .resultado-mensaje {
+        color: #d1d5db;
+    }
+
+    body.light-mode .resultado-mensaje {
+        color: #374151;
+    }
+
+    .botones-resultado {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .btn-resultado {
+        padding: 1rem;
+        border: none;
+        border-radius: 0.75rem;
+        color: white;
+        font-weight: 900;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 1rem;
+    }
+
+    .btn-resultado.jugar {
+        background: linear-gradient(90deg, #2563eb, #9333ea);
+    }
+
+    .btn-resultado.reiniciar {
+        background: #4b5563;
+    }
+
+    body.light-mode .btn-resultado.reiniciar {
+        background: #d1d5db;
+        color: #111;
+    }
+
+    .btn-resultado:hover {
+        transform: scale(1.05);
+    }
+
+    .tarjeta-ganador {
+        padding: 1.5rem;
+        border-radius: 1rem;
+        border: 4px solid #4f46e5;
+        margin-bottom: 2rem;
+        background: linear-gradient(180deg, #4c1d95, #4f46e5);
+    }
+
+    body.light-mode .tarjeta-ganador {
+        background: linear-gradient(180deg, #ddd6fe, #e9d5ff);
+        border-color: #9333ea;
+    }
+
+    .ganador-label {
+        font-size: 0.875rem;
+        font-weight: 900;
+        color: #a5f3fc;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    body.light-mode .ganador-label {
+        color: #6b21a8;
+    }
+
+    .ganador-nombre {
+        font-size: 1.875rem;
+        font-weight: 900;
+        color: white;
+        display: block;
+    }
+
+    body.light-mode .ganador-nombre {
+        color: #111;
+    }
+
+    .ecosistema {
+        padding: 1.5rem;
+        border-radius: 1rem;
+        border: 4px solid #4b5563;
+        background: linear-gradient(180deg, #1f2937, #111827);
+    }
+
+    body.light-mode .ecosistema {
+        background: linear-gradient(180deg, #f3f4f6, #e5e7eb);
+        border-color: #9ca3af;
+    }
+
+    .ecosistema-titulo {
+        font-size: 1.25rem;
+        font-weight: 900;
+        margin-bottom: 1rem;
+        color: white;
+    }
+
+    body.light-mode .ecosistema-titulo {
+        color: #111;
+    }
+
+    .ecosistema-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 0.75rem;
+    }
+
+    .eco-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0.75rem;
+        border-radius: 0.75rem;
+        color: white;
+        text-decoration: none;
+        font-weight: 900;
+        font-size: 0.7rem;
+        cursor: pointer;
+        text-align: center;
+        transition: all 0.3s;
+    }
+
+    .eco-link:hover {
+        transform: scale(1.05);
+    }
+
+    .eco-icono {
+        font-size: 1.5rem;
+        margin-bottom: 0.25rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+        .container {
+            padding: 0.5rem;
+        }
+
+        .equipos-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .podio-item {
+            flex-direction: column;
+            text-align: center;
+            gap: 0.5rem;
+        }
+
+        .podio-izq {
+            flex-direction: column;
+        }
+
+        .botones-resultado {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+```
+
 </head>
-<body>
-  <header class="hero">
-    <div class="container">
-      <div class="badge">🏛️ Teoría Organizacional 2026-1 · Olimpiadas Académicas</div>
-      <div class="hero-grid">
-        <div>
-          <h1>¡Olimpiadas de<br>Teoría Organizacional!</h1>
-          <p>
-            Una arena académica estilo quiz game donde cada equipo compite en una secuencia de retos,
-            desbloquea microjuegos, acumula puntos, escala en el ranking y se acerca al podio final.
-            Aquí la teoría se convierte en misión, juego, energía y estrategia colectiva.
-          </p>
-          <div class="cta-row">
-            <button class="btn btn-primary" onclick="document.getElementById('inscripcion').scrollIntoView({behavior:'smooth'})">Inscribir equipo</button>
-            <button class="btn btn-secondary" onclick="document.getElementById('retos').scrollIntoView({behavior:'smooth'})">Ver retos</button>
-          </div>
-          <div class="stats">
-            <div class="stat"><strong>5</strong>Retos épicos</div>
-            <div class="stat"><strong>25</strong>Microjuegos</div>
-            <div class="stat"><strong>4</strong>Equipos en batalla</div>
-          </div>
-          <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:18px;">
-            <div style="height:12px; border-radius:999px; background:linear-gradient(90deg,#ff4fbf,#ffd84d);"></div>
-            <div style="height:12px; border-radius:999px; background:linear-gradient(90deg,#38d9ff,#8b5cf6);"></div>
-            <div style="height:12px; border-radius:999px; background:linear-gradient(90deg,#4cff9a,#38d9ff);"></div>
-            <div style="height:12px; border-radius:999px; background:linear-gradient(90deg,#ffd84d,#ff8a00);"></div>
-            <div style="height:12px; border-radius:999px; background:linear-gradient(90deg,#8b5cf6,#ff4fbf);"></div>
-          </div>
+<body class="dark-mode">
+    <!-- PANTALLA INICIO -->
+    <div id="pantallaInicio" class="screen active container">
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+            <h1 class="titulo-principal">Olimpiadas Teoría Organizacional</h1>
+            <h2 class="subtitulo">Semana 4</h2>
+            <p style="font-size: 1.25rem; margin-bottom: 3rem; text-align: center;">Empresas y sistemas contables</p>
+            <p class="descripcion">Resuelve retos sobre tipos de empresa, estructuras organizacionales, necesidades de información y sistemas contables.</p>
+            <button class="btn-primary" onclick="app.iniciar()">Comenzar</button>
+            <button class="btn-secondary" onclick="app.abrirGlosario()">Ver glosario</button>
         </div>
-        <aside class="hero-card">
-          <div class="pill">🎁 Premio principal</div>
-          <h3>Equipo campeón</h3>
-          <ul>
-            <li>Exoneración de la sustentación oral del mapa mental.</li>
-            <li>Entrega obligatoria del mapa mental.</li>
-            <li>Nota de 5.0 en esta actividad.</li>
-            <li>Nota de 5.0 en el corte uno, según lineamiento docente comunicado previamente.</li>
-          </ul>
-          <p class="mini-note">El beneficio aplica al equipo ganador que participe en todos los retos y cumpla la entrega final.</p>
-        </aside>
-      </div>
-    </div>
-  </header>
-
-  <section class="section">
-    <div class="container">
-      <h2 class="section-title">Identidad de los equipos</h2>
-      <p class="section-desc">
-        La experiencia toma como base la identidad simbólica de los equipos Atenea, Apolo, Ares y Hemera,
-        orientados por valores como sabiduría, claridad, ejecución, transparencia, cooperación intelectual y compromiso colectivo.
-      </p>
-      <div class="cards-4">
-        <article class="card team-card">
-          <div class="team-tag">Equipo 1 · Modo sabiduría</div>
-          <div style="font-size:40px; margin-bottom:8px;">🦉</div>
-          <div class="team-name">Atenea</div>
-          <p class="team-value">Sabiduría, estrategia y pensamiento crítico para analizar los fenómenos organizacionales.</p>
-        </article>
-        <article class="card team-card">
-          <div class="team-tag">Equipo 2 · Modo claridad</div>
-          <div style="font-size:40px; margin-bottom:8px;">☀️</div>
-          <div class="team-name">Apolo</div>
-          <p class="team-value">Claridad, armonía y comunicación organizacional para dirigir con coherencia institucional.</p>
-        </article>
-        <article class="card team-card">
-          <div class="team-tag">Equipo 3 · Modo acción</div>
-          <div style="font-size:40px; margin-bottom:8px;">⚔️</div>
-          <div class="team-name">Ares</div>
-          <p class="team-value">Acción, determinación y ejecución para llevar las ideas a resultados reales.</p>
-        </article>
-        <article class="card team-card">
-          <div class="team-tag">Equipo 4 · Modo ética</div>
-          <div style="font-size:40px; margin-bottom:8px;">🌅</div>
-          <div class="team-name">Hemera</div>
-          <p class="team-value">Luz, transparencia y ética para construir confianza y responsabilidad organizacional.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="retos">
-    <div class="container">
-      <h2 class="section-title">Ruta gamificada de los 5 retos</h2>
-      <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:16px;">
-        <span class="pill">🎯 Preguntas flash</span>
-        <span class="pill">🧩 Retos visuales</span>
-        <span class="pill">⚡ Bonus sorpresa</span>
-        <span class="pill">🏆 Ranking en vivo</span>
-      </div>
-      <p class="section-desc">
-        Cada reto es una misión temática con varios microjuegos. El estudiante siente olimpiada, no evaluación tradicional.
-        La secuencia se alinea con Semana 4: empresa, clasificación, recursos y sistemas contables, integrando la empresa moderna en Colombia.
-      </p>
-
-      <div class="cards-5">
-        <article class="card reto-card">
-          <div class="reto-num">Reto 1</div>
-          <div class="reto-title">ADN de la empresa</div>
-          <div class="reto-focus">Definición de empresa, funciones, características, elementos y entorno.</div>
-          <div class="microgames">
-            <div class="microgame">🎯 Opción múltiple flash</div>
-            <div class="microgame">⚡ Falso/Verdadero extremo</div>
-            <div class="microgame">🧩 Emparejamiento visual</div>
-            <div class="microgame">🔤 Ahorcado académico</div>
-            <div class="microgame">🏗️ Mini rompecabezas empresarial</div>
-          </div>
-          <div class="reto-footer"><span>Comprensión inicial</span><span class="points">15 pts</span></div>
-        </article>
-
-        <article class="card reto-card">
-          <div class="reto-num">Reto 2</div>
-          <div class="reto-title">Clasifica o colapsa</div>
-          <div class="reto-focus">Clasificación por origen, actividad, utilidades y tamaño.</div>
-          <div class="microgames">
-            <div class="microgame">🌳 Árbol de decisión</div>
-            <div class="microgame">🗂️ Clasificación arrastrable</div>
-            <div class="microgame">🛤️ Ruta de categorías</div>
-            <div class="microgame">✍️ Crucigrama de taxonomía</div>
-            <div class="microgame">🔠 Ahorcado nivel 2</div>
-          </div>
-          <div class="reto-footer"><span>Taxonomía organizacional</span><span class="points">20 pts</span></div>
-        </article>
-
-        <article class="card reto-card">
-          <div class="reto-num">Reto 3</div>
-          <div class="reto-title">Laboratorio contable</div>
-          <div class="reto-focus">Sistemas contables en empresas industriales, comerciales y de servicios.</div>
-          <div class="microgames">
-            <div class="microgame">🧠 Crucigrama contable</div>
-            <div class="microgame">🐟 Espina de pescado</div>
-            <div class="microgame">🔗 Emparejamiento empresa-sistema</div>
-            <div class="microgame">📦 Mini caso situacional</div>
-            <div class="microgame">⚖️ Tablero de decisión contable</div>
-          </div>
-          <div class="reto-footer"><span>Aplicación práctica</span><span class="points">20 pts</span></div>
-        </article>
-
-        <article class="card reto-card">
-          <div class="reto-num">Reto 4</div>
-          <div class="reto-title">Colombia empresarial</div>
-          <div class="reto-focus">UVT, NIIF, BIC, ERP y cumplimiento en la empresa moderna.</div>
-          <div class="microgames">
-            <div class="microgame">🧮 Conversión UVT</div>
-            <div class="microgame">🌲 Árbol BIC vs cooperativa</div>
-            <div class="microgame">📊 Matriz comparativa</div>
-            <div class="microgame">💻 Ahorcado digital</div>
-            <div class="microgame">🔍 Espina ERP</div>
-          </div>
-          <div class="reto-footer"><span>Conexión con realidad colombiana</span><span class="points">20 pts</span></div>
-        </article>
-
-        <article class="card reto-card">
-          <div class="reto-num">Reto 5</div>
-          <div class="reto-title">Gran misión final</div>
-          <div class="reto-focus">Caso integrador con clasificación, sistema contable, BIC, ERP y decisión estratégica.</div>
-          <div class="microgames">
-            <div class="microgame">🎮 Ruta de movimiento</div>
-            <div class="microgame">📁 Caso final interactivo</div>
-            <div class="microgame">🧭 Matriz DOFA</div>
-            <div class="microgame">⏱️ Defensa sprint</div>
-            <div class="microgame">🎡 Ruleta bonus</div>
-          </div>
-          <div class="reto-footer"><span>Cierre integrador</span><span class="points">25 pts</span></div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container cards-2">
-      <article class="card">
-        <h2 class="section-title" style="font-size:32px;">Rúbrica de evaluación</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Criterio</th>
-              <th>Descripción</th>
-              <th>Peso</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td><strong>Precisión conceptual</strong></td><td>Comprensión correcta de los contenidos.</td><td><strong>30%</strong></td></tr>
-            <tr><td><strong>Aplicación</strong></td><td>Uso de conceptos en casos, decisiones y juegos.</td><td><strong>25%</strong></td></tr>
-            <tr><td><strong>Trabajo colaborativo</strong></td><td>Coordinación y participación real del equipo.</td><td><strong>20%</strong></td></tr>
-            <tr><td><strong>Pensamiento crítico</strong></td><td>Argumentación, análisis y justificación.</td><td><strong>15%</strong></td></tr>
-            <tr><td><strong>Disciplina y actitud</strong></td><td>Respeto de reglas, tiempos y comportamiento deportivo.</td><td><strong>10%</strong></td></tr>
-          </tbody>
-        </table>
-      </article>
-
-      <article class="card">
-        <h2 class="section-title" style="font-size:32px;">Reglas y condiciones</h2>
-        <div class="rules-list">
-          <div class="rule">Cada reto contiene varios microjuegos y un tiempo máximo definido por estación.</div>
-          <div class="rule">El puntaje se acumula por equipo y se proyecta en un tablero visible para todo el curso.</div>
-          <div class="rule">Cada equipo debe mantener su identidad y resolver colaborativamente las actividades.</div>
-          <div class="rule">Puede incluirse una pregunta dorada o ruleta bonus para desempates o bonificaciones.</div>
-          <div class="rule">La participación activa y el cumplimiento integral son requisito para acceder al premio.</div>
+        <div class="header-bar">
+            <div></div>
+            <button class="btn-toggle" onclick="app.alternarTema()">☀️</button>
         </div>
-      </article>
     </div>
-  </section>
 
-  <section class="section">
-    <div class="container cards-2">
-      <article class="scoreboard">
-        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:10px;">
-          <span class="pill">🔥 Modo competencia</span>
-          <span class="pill">📈 Ranking visible</span>
-          <span class="pill">🥇 Meta: llegar al oro</span>
+```
+<!-- MODAL GLOSARIO -->
+<div id="modalGlosario" class="modal" onclick="if(event.target===this) app.cerrarGlosario()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <div class="modal-header">
+            <h2>Glosario</h2>
+            <button class="btn-close" onclick="app.cerrarGlosario()">✕</button>
         </div>
-        <div class="pill" style="background: rgba(255,255,255,.14); color: white;">📈 Tablero visible</div>
-        <h2 style="font-size: 40px; margin: 14px 0 10px; line-height:1;">Puntuación, ranking y podio olímpico</h2>
-        <p style="color: rgba(255,255,255,.85); line-height:1.7; margin:0;">
-          Cada estación actualiza el acumulado general. El aula se convierte en una arena académica con ranking,
-          reconocimiento público y motivación permanente.
-        </p>
-        <div class="podio">
-          <div class="step" style="background:#cfd8e6; color:#1c2d45; min-height:140px;">🥈 2° Lugar<br><small>Plata</small></div>
-          <div class="step" style="background:linear-gradient(180deg,#ffe28c,#d4af37); color:#4b3a00; min-height:210px;">🥇 1° Lugar<br><small>Oro</small></div>
-          <div class="step" style="background:#d59a6a; color:#4b2400; min-height:120px;">🥉 3° Lugar<br><small>Cobre</small></div>
-        </div>
-        <div style="margin-top:14px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); border-radius:18px; padding:14px; text-align:center; font-weight:800;">🪵 4° Lugar · Madera</div>
-      </article>
-
-      <article class="card">
-        <h2 class="section-title" style="font-size:32px;">Bonos y comodines</h2>
-        <div class="bonus-grid">
-          <div class="bonus"><strong>Oráculo del reto</strong>Pista automática integrada en el juego después de un intento fallido.</div>
-          <div class="bonus"><strong>Doble impacto</strong>Duplica el valor de una respuesta correcta en una estación.</div>
-          <div class="bonus"><strong>Escudo</strong>Evita una penalización por error o por tiempo en una sola ocasión.</div>
-          <div class="bonus"><strong>Pregunta dorada</strong>Gana puntos extra o rompe empate al final de un reto.</div>
-        </div>
-        <p class="mini-note">Los comodines funcionan sin intervención del docente, reforzando una experiencia autónoma y constructivista.</p>
-      </article>
+        <div class="glosario-items" id="glosarioContent"></div>
     </div>
-  </section>
+</div>
 
-  <section class="section">
-    <div class="container cards-2">
-      <article class="card">
-        <h2 class="section-title" style="font-size:32px;">Premio académico</h2>
-        <div class="premio-list">
-          <div class="premio-item">🏆 Exoneración de la sustentación oral del mapa mental.</div>
-          <div class="premio-item">📌 Entrega obligatoria del mapa mental por parte del equipo ganador.</div>
-          <div class="premio-item">⭐ Nota de 5.0 en la actividad de Olimpiadas.</div>
-          <div class="premio-item">🎓 Nota de 5.0 en el corte uno, según lineamiento previamente comunicado.</div>
-        </div>
-      </article>
-
-      <article class="card" id="inscripcion">
-        <h2 class="section-title" style="font-size:32px;">Inscripción del equipo</h2>
-        <p class="section-desc" style="font-size:15px; max-width:none;">
-          Un solo integrante registra y manipula el desarrollo del juego en representación de su equipo, con apoyo de todos los demás integrantes.
-        </p>
-        <form class="form" onsubmit="event.preventDefault(); alert('Inscripción simulada. En producción se conecta a formulario o base de datos.');">
-          <select required>
-            <option value="">Seleccione equipo</option>
-            <option>🦉 Equipo 1 · Atenea</option>
-            <option>☀️ Equipo 2 · Apolo</option>
-            <option>⚔️ Equipo 3 · Ares</option>
-            <option>🌅 Equipo 4 · Hemera</option>
-          </select>
-          <button class="btn btn-primary" type="submit">Registrar equipo</button>
-        </form>
-      </article>
+<!-- PANTALLA SELECCIÓN -->
+<div id="pantallaSeleccion" class="screen container">
+    <div class="header-bar">
+        <div></div>
+        <h1 style="text-align: center; flex: 1; font-weight: 900; font-size: 1.875rem;">Selecciona tu equipo</h1>
+        <button class="btn-toggle" onclick="app.alternarTema()">☀️</button>
     </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="footer-cta">
-        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:16px;">
-          <div style="height:14px; border-radius:999px; background:linear-gradient(90deg,#ffd84d,#ffbf1a);"></div>
-          <div style="height:14px; border-radius:999px; background:linear-gradient(90deg,#cfe3ff,#8ab6ff);"></div>
-          <div style="height:14px; border-radius:999px; background:linear-gradient(90deg,#d98a4e,#8b5a2b);"></div>
-          <div style="height:14px; border-radius:999px; background:linear-gradient(90deg,#ff4fbf,#8b5cf6);"></div>
-        </div>
-        <div class="pill">🧠 Enfoque pedagógico</div>
-        <h2 class="section-title" style="font-size:34px; margin-top:12px;">Clase constructivista, lúdica y memorable</h2>
-        <p class="section-desc" style="max-width: 980px; margin-top: 10px;">
-          Las Olimpiadas de Teoría Organizacional convierten la clase en una experiencia viva: juego, identidad, análisis,
-          cooperación, estrategia y recompensa académica. El contenido de empresa, clasificación y sistemas contables se
-          transforma en una ruta activa donde el estudiante aprende haciendo y el equipo gana pensando.
-        </p>
-      </div>
+    <div class="equipos-grid" id="equiposGrid"></div>
+    <div class="marcador-general">
+        <h3 class="marcador-title">Marcador General</h3>
+        <div class="marcador-grid" id="marcadorGrid"></div>
     </div>
-  </section>
+</div>
 
-  <section class="section">
-    <div class="container">
-      <div class="footer-cta">
-        <div class="pill">🌐 Presencia digital del Profesor Néstor</div>
-        <h2 class="section-title" style="font-size:32px; margin-top:12px;">Conecta con InspiraMente y el ecosistema digital</h2>
-        <div class="cards-4" style="margin-top:18px;">
-          <a class="card" href="https://nestorpizarr0.blogspot.com" target="_blank"><strong>📝 InspiraMente Blog</strong><br><span class="mini-note">Lecturas, reflexión y contenido base.</span></a>
-          <a class="card" href="https://facebook.com/nest.pizarro" target="_blank"><strong>📘 Facebook personal</strong><br><span class="mini-note">Comunidad y conexión directa.</span></a>
-          <a class="card" href="https://facebook.com/profesornestorpizarro" target="_blank"><strong>📣 Facebook Page</strong><br><span class="mini-note">Difusión académica y marca docente.</span></a>
-          <a class="card" href="https://www.tiktok.com/@nestorpizarr0" target="_blank"><strong>🎵 TikTok</strong><br><span class="mini-note">Contenido breve y posicionamiento digital.</span></a>
-        </div>
-      </div>
+<!-- PANTALLA RETO -->
+<div id="pantallaReto" class="screen container">
+    <div class="reto-header">
+        <button class="btn-atras" id="btnAtras" onclick="app.volverAnterior()">←</button>
+        <div class="equipo-info" id="equipoInfo"></div>
+        <div class="timer" id="timer">1:00</div>
+        <button class="btn-toggle" onclick="app.alternarTema()">☀️</button>
     </div>
-  </section>
+    <div class="progreso-card">
+        <div class="progreso-header">
+            <span>Progreso Global</span>
+            <span id="progresoTexto">Reto 1/36</span>
+        </div>
+        <div class="progreso-bar">
+            <div class="progreso-fill" id="progresoFill"></div>
+        </div>
+    </div>
+    <div class="modulo-card" id="moduloCard"></div>
+    <div class="reto-contenido">
+        <div class="reto-box">
+            <div class="reto-emoji" id="retoEmoji">🏢</div>
+            <h3 class="reto-pregunta" id="retoPregunta">Pregunta</h3>
+            <div class="badge-puntos">
+                <span class="badge-label">Esta pregunta vale</span>
+                <span class="badge-valor" id="puntosValor">100</span>
+            </div>
+            <div class="opciones-container" id="opcionesContainer"></div>
+            <div id="retroContainer"></div>
+            <div class="botones-nav" id="botonesNav"></div>
+        </div>
+    </div>
+</div>
 
-  <footer class="footer">
-    Profesor Néstor Pizarro · Teoría Organizacional 2026-1 · InspiraMente Blog · Facebook · Facebook Page · TikTok
-  </footer>
+<!-- PANTALLA MÓDULO COMPLETADO -->
+<div id="pantallaModuloCompleto" class="screen container">
+    <div class="modulo-completado">
+        <div class="modulo-emoji">🎉</div>
+        <h2>Módulo Completado</h2>
+        <button class="btn-primary" onclick="app.continuarModulo()" style="max-width: 300px;">Continuar</button>
+    </div>
+</div>
 
-  <script>
-    // Espacio para lógica futura: scoreboard, cronómetro, persistencia o microjuegos.
-    console.log('Landing base lista para evolucionar a una versión con juegos interactivos.');
-  </script>
+<!-- PANTALLA RESULTADO FINAL -->
+<div id="pantallaResultado" class="screen container">
+    <div style="text-align: right; margin-bottom: 1rem;">
+        <button class="btn-toggle" onclick="app.alternarTema()">☀️</button>
+    </div>
+    <div class="resultado-contenedor">
+        <div class="resultado-card">
+            <div style="font-size: 5rem; margin-bottom: 1.5rem;">🏆</div>
+            <h1 class="resultado-titulo">¡Torneo Completado!</h1>
+            <div class="podio">
+                <h2 class="podio-titulo">📊 Podio Final</h2>
+                <div class="podio-items" id="podioItems"></div>
+                <div class="puntaje-total">
+                    <span class="puntaje-label">Puntaje Total Combinado</span>
+                    <p class="puntaje-valor" id="puntajeTotalFinal">0</p>
+                </div>
+            </div>
+            <p class="resultado-mensaje" id="mensajeResultado">Resultado registrado.</p>
+            <div class="botones-resultado" id="botonesResultado"></div>
+            <div class="tarjeta-ganador" id="tarjetaGanador"></div>
+            <div class="ecosistema">
+                <h3 class="ecosistema-titulo">Conecta con el ecosistema digital</h3>
+                <div class="ecosistema-grid" id="ecosistemaGrid"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const modulos = [
+        {
+            id: 0, titulo: 'MÓDULO 1: Tipología de Empresas',
+            retos: [
+                { id: 1, tipo: 'múltiple', imagen: '🏢', pregunta: '¿Cuál es la característica que distingue a una PYME de una gran empresa?', opciones: ['Número de empleados y volumen de ventas', 'La ubicación geográfica', 'El tipo de producto que vende', 'El color del logo'], respuestaCorrecta: 0, explicacion: 'Las PYMES se definen por cantidad de empleados (< 250) y facturación.', puntos: 100, ejemplo: 'Panadería local vs Bimbo' },
+                { id: 2, tipo: 'verdadero-falso', imagen: '👨‍👩‍👧‍👦', pregunta: 'En una empresa familiar, la gestión siempre es ejecutada por descendientes del fundador.', opciones: ['Verdadero', 'Falso'], respuestaCorrecta: 1, explicacion: 'El control es familiar pero puede delegarse a profesionales externos.', puntos: 100, ejemplo: 'Grupo Carrefour: control familiar con CEO profesional' },
+                { id: 3, tipo: 'múltiple', imagen: '🚀', pregunta: '¿Cuál caracteriza a una startup?', opciones: ['Más de 10 años operando', 'Busca crecimiento rápido con innovación y tecnología', 'Es obligatoriamente sociedad anónima', 'Solo en sector tecnológico'], respuestaCorrecta: 1, explicacion: 'Startups buscan escalabilidad rápida con modelo innovador.', puntos: 120, ejemplo: 'Airbnb, Uber, Rappi' },
+                { id: 4, tipo: 'múltiple', imagen: '⚖️', pregunta: '¿Qué caracteriza a una Sociedad de Responsabilidad Limitada?', opciones: ['Socios responden con todo su patrimonio', 'Socios responden solo hasta su aporte', 'No tiene regulación clara', 'Requiere aportaciones en efectivo únicamente'], respuestaCorrecta: 1, explicacion: 'En SRL, responsabilidad limitada al monto aportado.', puntos: 130, ejemplo: 'Estructura común en pequeños negocios colombianos' },
+                { id: 5, tipo: 'múltiple', imagen: '🏭', pregunta: '¿Cuál es la ventaja de una Sociedad Anónima?', opciones: ['Menor costo de constitución', 'Facilita transferencia de acciones y acceso a capital', 'Requiere menos reportería', 'No necesita auditoría'], respuestaCorrecta: 1, explicacion: 'SA: transferencia de acciones permite dilución de capital.', puntos: 140, ejemplo: 'Ecopetrol, Bancolombia, Grupo Éxito' },
+                { id: 6, tipo: 'verdadero-falso', imagen: '🌐', pregunta: 'Una multinacional se define únicamente por el número de países donde opera.', opciones: ['Verdadero', 'Falso'], respuestaCorrecta: 1, explicacion: 'Se define por operaciones integrales con filiales en múltiples países.', puntos: 100, ejemplo: 'Centros de decisión en varios países, no solo oficinas' }
+            ]
+        },
+        {
+            id: 1, titulo: 'MÓDULO 2: Estructura Organizacional',
+            retos: [
+                { id: 7, tipo: 'múltiple', imagen: '📊', pregunta: '¿Cuál es el propósito de una estructura organizacional?', opciones: ['Definir salarios', 'Organizar funciones, responsabilidades y autoridad', 'Determinar producción', 'Elegir uniformes'], respuestaCorrecta: 1, explicacion: 'Estructura define agrupación de funciones y flujo de autoridad.', puntos: 110, ejemplo: 'Organigrama con áreas y gerencias' },
+                { id: 8, tipo: 'múltiple', imagen: '🔺', pregunta: '¿Qué estructura es típica en pequeña empresa?', opciones: ['Matriz compleja', 'Funcional simple con pocos niveles', 'Departamental segmentada', 'Virtual global'], respuestaCorrecta: 1, explicacion: 'Pequeñas: estructura simple, pocos niveles jerárquicos.', puntos: 130, ejemplo: 'Tienda local vs Carrefour' },
+                { id: 9, tipo: 'verdadero-falso', imagen: '🎯', pregunta: 'En estructura funcional, un empleado reporta a múltiples jefes.', opciones: ['Verdadero', 'Falso'], respuestaCorrecta: 1, explicacion: 'Funcional: un solo jefe directo. Matriz: dos jefes.', puntos: 120, ejemplo: 'Programador: jefe técnico Y jefe de proyecto (matriz)' },
+                { id: 10, tipo: 'múltiple', imagen: '🔗', pregunta: '¿Ventaja de estructura divisional sobre funcional?', opciones: ['Menos personal administrativo', 'Respuesta rápida a cada mercado/segmento', 'Reduce tecnología necesaria', 'Elimina comunicación horizontal'], respuestaCorrecta: 1, explicacion: 'Divisional por producto/mercado permite agilidad.', puntos: 140, ejemplo: 'Grupo Éxito: Éxito, Falabella, Carrefour' },
+                { id: 11, tipo: 'verdadero-falso', imagen: '☁️', pregunta: 'Estructura virtual requiere empleados en misma oficina.', opciones: ['Verdadero', 'Falso'], respuestaCorrecta: 1, explicacion: 'Virtual: colaboración remota, tercerización, flexibilidad.', puntos: 110, ejemplo: 'Agencias digitales 100% remoto' },
+                { id: 12, tipo: 'múltiple', imagen: '👥', pregunta: '¿En qué estructura hay dos líneas de autoridad?', opciones: ['Funcional', 'Divisional', 'Matriz', 'Familiar'], respuestaCorrecta: 2, explicacion: 'Matriz: línea funcional (experto) + línea proyecto.', puntos: 150, ejemplo: 'Dev reporta a gerente técnico Y gerente proyecto' }
+            ]
+        },
+        {
+            id: 2, titulo: 'MÓDULO 3: Necesidades de Información',
+            retos: [
+                { id: 13, tipo: 'múltiple', imagen: '📈', pregunta: '¿Qué información necesita una pequeña empresa?', opciones: ['Reportes trimestrales complejos', 'Estado de caja, costos, ganancias para decisiones operativas', 'Auditoría internacional', 'Análisis de 10 años'], respuestaCorrecta: 1, explicacion: 'Pequeña empresa: información OPORTUNA para decisiones diarias.', puntos: 120, ejemplo: '¿Puedo pagar nómina esta semana?' },
+                { id: 14, tipo: 'verdadero-falso', imagen: '🏛️', pregunta: 'Una empresa cotizada en bolsa requiere alta transparencia y reportes auditados.', opciones: ['Verdadero', 'Falso'], respuestaCorrecta: 0, explicacion: 'Públicas: obligación legal de reportar información verificada.', puntos: 130, ejemplo: 'Ecopetrol, Bancolombia: reportes auditados trimestrales' },
+                { id: 15, tipo: 'múltiple', imagen: '🌍', pregunta: '¿Qué necesidades tiene una multinacional?', opciones: ['Las mismas que empresa local', 'Consolidación multidivisional, riesgo de cambio, múltiples monedas', 'Menos porque opera en muchos países', 'Ninguna especial'], respuestaCorrecta: 1, explicacion: 'Multis: consolidar múltiples operaciones, países, monedas.', puntos: 150, ejemplo: 'Nestlé consolida 180+ países' },
+                { id: 16, tipo: 'verdadero-falso', imagen: '👨‍👩‍👧‍👦', pregunta: 'En empresa familiar, información contable se necesita solo para reportes externos.', opciones: ['Verdadero', 'Falso'], respuestaCorrecta: 1, explicacion: 'Vital para decisiones internas, sucesión, herencia.', puntos: 120, ejemplo: 'Evita disputas entre herederos' },
+                { id: 17, tipo: 'múltiple', imagen: '🚀', pregunta: '¿Qué información es crítica para una startup?', opciones: ['Rentabilidad histórica de 5 años', 'Proyecciones flujo caja y punto equilibrio', 'Estados financieros auditados trimestrales', 'Desempeño vs estándares maduros'], respuestaCorrecta: 1, explicacion: 'Startups: proyecciones futuras, no históricos.', puntos: 140, ejemplo: 'Inversionistas: ¿Cuándo llegas a flujo positivo?' },
+                { id: 18, tipo: 'verdadero-falso', imagen: '🎯', pregunta: 'Una ONG tiene idénticas necesidades que empresa comercial.', opciones: ['Verdadero', 'Falso'], respuestaCorrecta: 1, explicacion: 'ONGs: gestión de donaciones, beneficiarios, impacto social.', puntos: 130, ejemplo: '% para programas, costo por beneficiario' }
+            ]
+        },
+        {
+            id: 3, titulo: 'MÓDULO 4: Sistemas Contables',
+            retos: [
+                { id: 19, tipo: 'múltiple', imagen: '📚', pregunta: '¿Qué sistema para pequeña empresa (< 50 empleados)?', opciones: ['ERP clase mundial', 'Software contable simple', 'Sistema distribuido múltiples plataformas', 'Blockchain'], respuestaCorrecta: 1, explicacion: 'Pequeña: sistema SIMPLE, bajo costo, manejable.', puntos: 130, ejemplo: 'Contasol, Siigo básico' },
+                { id: 20, tipo: 'verdadero-falso', imagen: '🔗', pregunta: 'Empresa mediana (50-250 empleados) necesita ERP integrado.', opciones: ['Verdadero', 'Falso'], respuestaCorrecta: 0, explicacion: 'Mediana: integración ventas-inventario-contabilidad.', puntos: 140, ejemplo: 'SAP, Oracle, Siigo profesional' },
+                { id: 21, tipo: 'múltiple', imagen: '🏭', pregunta: '¿Qué debe tener el sistema de una empresa grande?', opciones: ['Solo ingresos y gastos básicos', 'Consolidación multidivisional, NIIF, auditoría, análisis multidimensional', 'Funciones limitadas', 'Evitar reportería'], respuestaCorrecta: 1, explicacion: 'Grandes: consolidación multidivisional, NIIF, auditoría interna.', puntos: 160, ejemplo: 'SAP global: reportes por negocio, división, país' },
+                { id: 22, tipo: 'verdadero-falso', imagen: '🌍', pregunta: 'Una multinacional usa igual sistema que matriz sin cambios.', opciones: ['Verdadero', 'Falso'], respuestaCorrecta: 1, explicacion: 'Se adapta para monedas locales, normativas, lenguas.', puntos: 140, ejemplo: 'Brasil: Reales, CNPJ, año fiscal brasileño' },
+                { id: 23, tipo: 'múltiple', imagen: '🎯', pregunta: '¿Qué diferencia sistema ONG vs empresa comercial?', opciones: ['ONGs no necesitan contabilidad', 'Separación fondos, donantes, costo por beneficiario', 'ONGs solo usan presupuesto', 'No hay diferencia'], respuestaCorrecta: 1, explicacion: 'ONGs: contabilidad por fondos, análisis de impacto.', puntos: 150, ejemplo: 'Usaid, fondos propios, ingresos: separados' },
+                { id: 24, tipo: 'verdadero-falso', imagen: '🚀', pregunta: 'Una startup debe elegir ERP complejo desde inicio.', opciones: ['Verdadero', 'Falso'], respuestaCorrecta: 1, explicacion: 'Startup: comienza simple, complejidad se añade.', puntos: 120, ejemplo: 'Uber: contabilidad básica, después sistemas globales' }
+            ]
+        },
+        {
+            id: 4, titulo: 'MÓDULO 5: Decisiones Empresa→Sistema',
+            retos: [
+                { id: 25, tipo: 'múltiple', imagen: '🎯', pregunta: 'Panadería local se expande a 5 ciudades. ¿Cambio en sistema?', opciones: ['Ningún cambio', 'Integrar inventario, ventas, costos por sucursal', 'Cambiar a blockchain', 'ERP clase mundial'], respuestaCorrecta: 1, explicacion: 'Expansión multilocal: integración y reportes consolidados.', puntos: 150, ejemplo: 'Ver ventas Cali, costos Medellín, ganancia total' },
+                { id: 26, tipo: 'verdadero-falso', imagen: '📈', pregunta: 'Empresa mediana adquirida por multinacional debe integrar sistema inmediatamente.', opciones: ['Verdadero', 'Falso'], respuestaCorrecta: 0, explicacion: 'Integración: consolidación, sinergia, control corporativo.', puntos: 140, ejemplo: 'Google integra startups a su sistema global' },
+                { id: 27, tipo: 'múltiple', imagen: '🏛️', pregunta: '¿Factor principal al elegir sistema contable?', opciones: ['Color de interfaz', 'Tamaño, complejidad, normativas, presupuesto', 'Solo costo del software', 'Opinión gerente marketing'], respuestaCorrecta: 1, explicacion: 'Elección: escala, complejidad, requisitos legales, inversión.', puntos: 160, ejemplo: 'Tienda: Siigo Pyme. Corporativo: SAP' },
+                { id: 28, tipo: 'verdadero-falso', imagen: '🌐', pregunta: 'Empresa en Colombia puede usar cualquier sistema sin normativas locales.', opciones: ['Verdadero', 'Falso'], respuestaCorrecta: 1, explicacion: 'Debe cumplir: UIS, DIAN, PUC, NIIF si es obligado.', puntos: 130, ejemplo: 'Soportar retenciones, DIAN, impuestos locales' },
+                { id: 29, tipo: 'múltiple', imagen: '🔄', pregunta: '¿Riesgo principal cambiar sistema contable?', opciones: ['Software más bonito', 'Pérdida datos, downtime, inconsistencias en migración', 'Empleados nuevos no saben usarlo', 'Ningún riesgo'], respuestaCorrecta: 1, explicacion: 'Migración crítica: pérdida datos, downtime real.', puntos: 150, ejemplo: 'Balance histórico no coincide con nuevo sistema' },
+                { id: 30, tipo: 'verdadero-falso', imagen: '💡', pregunta: 'Sistema contable es decisión técnica sin dirección general.', opciones: ['Verdadero', 'Falso'], respuestaCorrecta: 1, explicacion: 'Decisión estratégica: impacta toda empresa, requiere CEO.', puntos: 140, ejemplo: 'Implementación ERP falla sin apoyo CEO' }
+            ]
+        },
+        {
+            id: 5, titulo: 'MÓDULO 6: Síntesis y Casos',
+            retos: [
+                { id: 31, tipo: 'múltiple', imagen: '🏪', pregunta: 'CASO: "MiTienda" (8 empleados, $500k ventas). ¿Sistema?', opciones: ['SAP completo', 'Software contable simple', 'Blockchain', 'Sin sistema'], respuestaCorrecta: 1, explicacion: 'Pequeña: sistema SIMPLE y bajo costo.', puntos: 140, ejemplo: 'Contasol, Siigo básico' },
+                { id: 32, tipo: 'múltiple', imagen: '🏭', pregunta: 'CASO: "Textiles Colombia" (120 empleados, exporta). ¿Necesidad?', opciones: ['Solo ventas locales', 'Integración inv-ventas-costos, monedas múltiples', 'Contabilidad manual', 'Registros en papel'], respuestaCorrecta: 1, explicacion: 'Manufacturera exportadora: sistema integrado multimoneda.', puntos: 160, ejemplo: 'Ventas USD, deudas EUR' },
+                { id: 33, tipo: 'verdadero-falso', imagen: '🌍', pregunta: 'CASO: Grupo Éxito (200+ tiendas, 4 países) requiere consolidación.', opciones: ['Verdadero', 'Falso'], respuestaCorrecta: 0, explicacion: 'Sistema complejo integrado OBLIGATORIO.', puntos: 150, ejemplo: 'SAP: Medellín, Bogotá, Quito, Buenos Aires centralizados' },
+                { id: 34, tipo: 'múltiple', imagen: '🚀', pregunta: 'CASO: TechStart (25 empleados, $500k USD seed). ¿Estrategia?', opciones: ['ERP global ahora', 'Sistema simple que escale', 'Sin sistema', 'Tercerizar todo'], respuestaCorrecta: 1, explicacion: 'Startup: comienza simple, escala conforme crece.', puntos: 150, ejemplo: 'Uber: contabilidad básica, después sistemas globales' },
+                { id: 35, tipo: 'verdadero-falso', imagen: '🏢', pregunta: 'CASO: ONG humanitaria tiene mismo sistema que empresa comercial.', opciones: ['Verdadero', 'Falso'], respuestaCorrecta: 1, explicacion: 'ONG: separación fondos, clasificación donante, impacto.', puntos: 140, ejemplo: 'Usaid separado de Cruz Roja, separado de Acción' },
+                { id: 36, tipo: 'múltiple', imagen: '🎯', pregunta: '¿Por qué empresas necesitan DIFERENTES sistemas?', opciones: ['Nombre del dueño', 'Complejidad operativa, ubicaciones, normativas, escala', 'Idioma empleados', 'Década de fundación'], respuestaCorrecta: 1, explicacion: 'Sistema = función de complejidad y crecimiento.', puntos: 160, ejemplo: 'Panadería vs Carrefour: sistemas radicalmente distintos' }
+            ]
+        }
+    ];
+
+    const equipos = {
+        atenea: { nombre: 'ATENEA', icono: '🦉', colorFrom: '#7c3aed', colorTo: '#a855f7' },
+        apolo: { nombre: 'APOLO', icono: '☀️', colorFrom: '#eab308', colorTo: '#f97316' },
+        ares: { nombre: 'ARES', icono: '⚔️', colorFrom: '#dc2626', colorTo: '#ef4444' },
+        hemera: { nombre: 'HEMERA', icono: '💎', colorFrom: '#16a34a', colorTo: '#22c55e' }
+    };
+
+    const glosarioData = {
+        'PYME': 'Pequeña y mediana empresa',
+        'Sociedad Anónima': 'Empresa con capital dividido en acciones',
+        'Responsabilidad Limitada': 'Socios responden hasta por su aporte',
+        'Empresa Familiar': 'Controlada por miembros de una familia',
+        'Startup': 'Empresa joven con modelo innovador y crecimiento rápido',
+        'Sistema Contable': 'Estructura de registros para información financiera'
+    };
+
+    const ecosistemaLinks = [
+        { icon: '🌐', label: 'Blog', url: 'https://nestorpizarr0.blogspot.com/' },
+        { icon: '📸', label: 'Instagram', url: 'https://www.instagram.com/nestorpizarro/' },
+        { icon: '🧵', label: 'Threads', url: 'https://www.threads.com/@nestorpizarro' },
+        { icon: '📘', label: 'Facebook', url: 'https://www.facebook.com/nest.pizarro/' },
+        { icon: '📘', label: 'Página', url: 'https://www.facebook.com/profesornestorpizarro/' },
+        { icon: '⭐', label: 'Suscriptores', url: 'https://www.facebook.com/nest.pizarro/subscribers' },
+        { icon: '🎥', label: 'YouTube', url: 'https://www.youtube.com/@nespizarro' },
+        { icon: '💼', label: 'LinkedIn', url: 'https://co.linkedin.com/in/nestorpizarro' },
+        { icon: '🎵', label: 'TikTok', url: 'https://www.tiktok.com/@nestorpizarr0' },
+        { icon: '🔵', label: 'Comunidad', url: 'https://ig.me/j/AbZztrKvs_e-9KcD/?igsh=MTBkMDRpZXU3and4bw==' }
+    ];
+
+    const app = {
+        temaOscuro: true,
+        equiposYaJugados: new Set(),
+        puntuacionGlobal: { atenea: 0, apolo: 0, ares: 0, hemera: 0 },
+        respuestasPorEquipo: { atenea: {}, apolo: {}, ares: {}, hemera: {} },
+        equipoSeleccionado: null,
+        moduloActual: 0,
+        retoActual: 0,
+        retoCompletado: false,
+        retroalimentacion: null,
+        tiempoRestante: 60,
+        respuestaSeleccionada: null,
+        timerInterval: null,
+        vistaAnterior: null,
+
+        alternarTema() {
+            this.temaOscuro = !this.temaOscuro;
+            document.body.className = this.temaOscuro ? 'dark-mode' : 'light-mode';
+            document.querySelectorAll('.btn-toggle').forEach(btn => {
+                btn.textContent = this.temaOscuro ? '☀️' : '🌙';
+            });
+        },
+
+        abrirGlosario() {
+            const glosarioContent = document.getElementById('glosarioContent');
+            glosarioContent.innerHTML = '';
+            Object.entries(glosarioData).forEach(([termino, def]) => {
+                const div = document.createElement('div');
+                div.className = 'glosario-item';
+                div.innerHTML = `<div class="glosario-term">${termino}</div><div class="glosario-def">${def}</div>`;
+                glosarioContent.appendChild(div);
+            });
+            document.getElementById('modalGlosario').classList.add('active');
+        },
+
+        cerrarGlosario() {
+            document.getElementById('modalGlosario').classList.remove('active');
+        },
+
+        iniciar() {
+            this.vistaAnterior = 'inicio';
+            this.irAPantalla('seleccion');
+        },
+
+        irAPantalla(pantalla) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            const pantallaElement = document.getElementById(`pantalla${this.capitalizarPalabra(pantalla)}`);
+            if (pantallaElement) {
+                pantallaElement.classList.add('active');
+            }
+
+            if (pantalla === 'seleccion') {
+                this.renderizarSeleccion();
+            } else if (pantalla === 'reto') {
+                this.renderizarReto();
+                this.iniciarTimer();
+            } else if (pantalla === 'resultado') {
+                this.renderizarResultado();
+            } else if (pantalla === 'moduloCompleto') {
+                // No necesita renderizado
+            }
+        },
+
+        capitalizarPalabra(palabra) {
+            return palabra.charAt(0).toUpperCase() + palabra.slice(1).replace('-', '');
+        },
+
+        renderizarSeleccion() {
+            const equiposGrid = document.getElementById('equiposGrid');
+            equiposGrid.innerHTML = '';
+            Object.entries(equipos).forEach(([id, equipo]) => {
+                const yaJugo = this.equiposYaJugados.has(id);
+                const btn = document.createElement('button');
+                btn.className = 'btn-equipo';
+                btn.style.setProperty('--color-from', equipo.colorFrom);
+                btn.style.setProperty('--color-to', equipo.colorTo);
+                btn.disabled = yaJugo;
+                btn.innerHTML = `<span class="equipo-icono">${equipo.icono}</span><span class="equipo-nombre">${equipo.nombre}</span>${yaJugo ? '<span class="ya-jugo">✅</span>' : ''}`;
+                btn.onclick = () => this.seleccionarEquipo(id);
+                equiposGrid.appendChild(btn);
+            });
+
+            const marcadorGrid = document.getElementById('marcadorGrid');
+            marcadorGrid.innerHTML = '';
+            Object.entries(this.puntuacionGlobal).forEach(([id, pts]) => {
+                const card = document.createElement('div');
+                card.className = 'marcador-card';
+                if (this.equiposYaJugados.has(id)) card.style.borderColor = '#22c55e';
+                card.innerHTML = `<div class="marcador-icono">${equipos[id].icono}</div><div class="marcador-nombre">${equipos[id].nombre}</div><div class="marcador-puntos">${pts}</div>`;
+                marcadorGrid.appendChild(card);
+            });
+        },
+
+        seleccionarEquipo(id) {
+            if (this.equiposYaJugados.has(id)) return;
+            this.equipoSeleccionado = id;
+            this.moduloActual = 0;
+            this.retoActual = 0;
+            this.retoCompletado = false;
+            this.retroalimentacion = null;
+            this.respuestaSeleccionada = null;
+            this.tiempoRestante = 60;
+            this.irAPantalla('reto');
+        },
+
+        renderizarReto() {
+            const reto = modulos[this.moduloActual].retos[this.retoActual];
+            const totalRetos = modulos.reduce((sum, m) => sum + m.retos.length, 0);
+            const retoGlobalActual = modulos.slice(0, this.moduloActual).reduce((sum, m) => sum + m.retos.length, 0) + this.retoActual + 1;
+            const progresoGlobal = Math.round((retoGlobalActual / totalRetos) * 100);
+            const indiceGlobalActual = modulos.slice(0, this.moduloActual).reduce((sum, m) => sum + m.retos.length, 0) + this.retoActual;
+            const puedeIrAtras = indiceGlobalActual > 0;
+
+            document.getElementById('equipoInfo').innerHTML = `<span class="equipo-info-icono">${equipos[this.equipoSeleccionado].icono}</span><div><div class="equipo-info-nombre">${equipos[this.equipoSeleccionado].nombre}</div><div class="equipo-info-puntos">${this.puntuacionGlobal[this.equipoSeleccionado]}</div></div>`;
+            document.getElementById('btnAtras').disabled = !puedeIrAtras;
+            document.getElementById('progresoTexto').textContent = `Reto ${retoGlobalActual}/${totalRetos}`;
+            document.getElementById('progresoFill').style.width = `${progresoGlobal}%`;
+            document.getElementById('moduloCard').innerHTML = `<h2>${modulos[this.moduloActual].titulo.split(':')[1]?.trim() || modulos[this.moduloActual].titulo}</h2>`;
+            document.getElementById('retoEmoji').textContent = reto.imagen;
+            document.getElementById('retoPregunta').textContent = reto.pregunta;
+            document.getElementById('puntosValor').textContent = reto.puntos;
+
+            const opcionesContainer = document.getElementById('opcionesContainer');
+            opcionesContainer.innerHTML = '';
+
+            if (!this.retoCompletado) {
+                if (reto.tipo === 'verdadero-falso') {
+                    ['Verdadero', 'Falso'].forEach((opcion, idx) => {
+                        const btn = document.createElement('button');
+                        btn.className = 'btn-opcion';
+                        btn.textContent = (idx === 0 ? '✅' : '❌') + ' ' + opcion;
+                        btn.onclick = () => this.enviarRespuesta(idx);
+                        opcionesContainer.appendChild(btn);
+                    });
+                } else if (reto.tipo === 'múltiple') {
+                    reto.opciones.forEach((opcion, idx) => {
+                        const btn = document.createElement('button');
+                        btn.className = 'btn-opcion';
+                        btn.textContent = String.fromCharCode(65 + idx) + '. ' + opcion;
+                        btn.onclick = () => this.enviarRespuesta(idx);
+                        opcionesContainer.appendChild(btn);
+                    });
+                }
+            }
+
+            this.mostrarRetroalimentacion();
+            this.mostrarBotonesNav(puedeIrAtras);
+        },
+
+        mostrarRetroalimentacion() {
+            const retroContainer = document.getElementById('retroContainer');
+            retroContainer.innerHTML = '';
+            if (this.retroalimentacion) {
+                const div = document.createElement('div');
+                div.className = `retroalimentacion ${this.retroalimentacion.esCorrecta ? 'correcta' : 'incorrecta'}`;
+                div.innerHTML = `
+                    <div class="retroalimentacion-titulo">${this.retroalimentacion.mensaje}</div>
+                    <div class="retroalimentacion-texto"><strong>Explicación:</strong> ${this.retroalimentacion.explicacion}</div>
+                    <div class="retroalimentacion-texto"><strong>Ejemplo:</strong> ${this.retroalimentacion.ejemplo}</div>
+                    <div style="font-weight: 900; margin-top: 0.5rem; color: #fbbf24;">${this.retroalimentacion.puntosGanados > 0 ? '+' + this.retroalimentacion.puntosGanados + ' puntos' : 'Sin puntos'}</div>
+                `;
+                retroContainer.appendChild(div);
+            }
+        },
+
+        mostrarBotonesNav(puedeIrAtras) {
+            const botonesNav = document.getElementById('botonesNav');
+            botonesNav.innerHTML = '';
+
+            if (this.retoCompletado) {
+                if (puedeIrAtras) {
+                    const btnAtras = document.createElement('button');
+                    btnAtras.className = 'btn-nav atras';
+                    btnAtras.textContent = '← Atrás';
+                    btnAtras.onclick = () => this.irAPreguntaAnterior();
+                    botonesNav.appendChild(btnAtras);
+                }
+                const btnSiguiente = document.createElement('button');
+                btnSiguiente.className = 'btn-nav siguiente';
+                btnSiguiente.textContent = 'Siguiente →';
+                btnSiguiente.onclick = () => this.siguienteReto();
+                botonesNav.appendChild(btnSiguiente);
+            }
+        },
+
+        enviarRespuesta(respuesta) {
+            if (this.retoCompletado) return;
+
+            const reto = modulos[this.moduloActual].retos[this.retoActual];
+            let esCorrecta = respuesta === reto.respuestaCorrecta;
+
+            this.respuestaSeleccionada = respuesta;
+            const nuevasRespuestas = {
+                ...this.respuestasPorEquipo[this.equipoSeleccionado],
+                [reto.id]: { respuesta, yaFueEditada: false }
+            };
+            this.respuestasPorEquipo[this.equipoSeleccionado] = nuevasRespuestas;
+
+            const puntosTotal = this.calcularPuntosEquipo(this.equipoSeleccionado, nuevasRespuestas);
+            this.puntuacionGlobal[this.equipoSeleccionado] = puntosTotal;
+
+            this.retroalimentacion = {
+                esCorrecta,
+                mensaje: esCorrecta ? '✅ Correcto' : '❌ Incorrecto',
+                explicacion: reto.explicacion,
+                puntosGanados: esCorrecta ? reto.puntos : 0,
+                ejemplo: reto.ejemplo
+            };
+
+            this.retoCompletado = true;
+            this.renderizarReto();
+        },
+
+        calcularPuntosEquipo(equipo, respuestasActuales) {
+            let puntos = 0;
+            modulos.forEach(modulo => {
+                modulo.retos.forEach(reto => {
+                    const datosReto = respuestasActuales[reto.id];
+                    if (datosReto && datosReto.respuesta === reto.respuestaCorrecta) {
+                        puntos += reto.puntos;
+                    }
+                });
+            });
+            return puntos;
+        },
+
+        irAPreguntaAnterior() {
+            const indiceGlobalActual = modulos.slice(0, this.moduloActual).reduce((sum, m) => sum + m.retos.length, 0) + this.retoActual;
+            if (indiceGlobalActual === 0) return;
+
+            if (this.retoActual > 0) {
+                this.retoActual--;
+            } else if (this.moduloActual > 0) {
+                this.moduloActual--;
+                this.retoActual = modulos[this.moduloActual].retos.length - 1;
+            }
+
+            this.retoCompletado = false;
+            this.retroalimentacion = null;
+            this.respuestaSeleccionada = null;
+            this.renderizarReto();
+        },
+
+        volverAnterior() {
+            const pantallaActiva = document.querySelector('.screen.active');
+            if (pantallaActiva && pantallaActiva.id === 'pantallaSeleccion') {
+                if (this.vistaAnterior === 'resultado-final') {
+                    this.irAPantalla('resultado');
+                } else {
+                    this.irAPantalla('inicio');
+                }
+                this.vistaAnterior = null;
+            } else if (pantallaActiva && pantallaActiva.id === 'pantallaReto') {
+                this.irAPreguntaAnterior();
+            }
+        },
+
+        siguienteReto() {
+            if (this.retoActual < modulos[this.moduloActual].retos.length - 1) {
+                this.retoActual++;
+                this.retoCompletado = false;
+                this.retroalimentacion = null;
+                this.respuestaSeleccionada = null;
+                this.renderizarReto();
+            } else if (this.moduloActual < modulos.length - 1) {
+                this.irAPantalla('moduloCompleto');
+            } else {
+                this.equiposYaJugados.add(this.equipoSeleccionado);
+                this.irAPantalla('resultado');
+            }
+        },
+
+        continuarModulo() {
+            this.moduloActual++;
+            this.retoActual = 0;
+            this.retoCompletado = false;
+            this.retroalimentacion = null;
+            this.irAPantalla('reto');
+        },
+
+        iniciarTimer() {
+            clearInterval(this.timerInterval);
+            this.tiempoRestante = 60;
+            this.actualizarTimer();
+            this.timerInterval = setInterval(() => {
+                this.tiempoRestante--;
+                this.actualizarTimer();
+                if (this.tiempoRestante === 0 && !this.retoCompletado) {
+                    this.retroalimentacion = {
+                        esCorrecta: false,
+                        mensaje: 'Tiempo agotado',
+                        explicacion: 'No respondiste a tiempo.',
+                        puntosGanados: 0,
+                        ejemplo: ''
+                    };
+                    this.retoCompletado = true;
+                    this.renderizarReto();
+                }
+            }, 1000);
+        },
+
+        actualizarTimer() {
+            const mins = Math.floor(this.tiempoRestante / 60);
+            const segs = this.tiempoRestante % 60;
+            const timerEl = document.getElementById('timer');
+            timerEl.textContent = `${mins}:${segs.toString().padStart(2, '0')}`;
+            timerEl.className = 'timer ' + (this.tiempoRestante > 30 ? 'verde' : this.tiempoRestante > 10 ? 'amarillo' : 'rojo');
+        },
+
+        renderizarResultado() {
+            const ordenado = Object.entries(this.puntuacionGlobal).sort((a, b) => b[1] - a[1]);
+            const puntajeTotal = Object.values(this.puntuacionGlobal).reduce((a, b) => a + b, 0);
+            const equiposDisponibles = Object.keys(equipos).filter(id => !this.equiposYaJugados.has(id));
+
+            const podioItems = document.getElementById('podioItems');
+            podioItems.innerHTML = '';
+            ordenado.forEach(([id, pts], idx) => {
+                const claseItem = idx === 0 ? 'primero' : idx === 1 ? 'segundo' : idx === 2 ? 'tercero' : 'cuarto';
+                const medalla = idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `${idx + 1}º`;
+                const div = document.createElement('div');
+                div.className = `podio-item ${claseItem}`;
+                div.innerHTML = `
+                    <div class="podio-izq">
+                        <span class="podio-medalla">${medalla}</span>
+                        <div class="podio-nombre">
+                            <span class="podio-nombre-icono">${equipos[id].icono}</span>
+                            <span class="podio-nombre-texto">${equipos[id].nombre}</span>
+                        </div>
+                    </div>
+                    <span class="podio-puntos">${pts}</span>
+                `;
+                podioItems.appendChild(div);
+            });
+
+            document.getElementById('puntajeTotalFinal').textContent = puntajeTotal;
+            document.getElementById('mensajeResultado').textContent = equiposDisponibles.length > 0 ? 'Continúa con otro equipo o reinicia el torneo.' : 'Todos los equipos han jugado.';
+
+            const botonesResultado = document.getElementById('botonesResultado');
+            botonesResultado.innerHTML = '';
+            if (equiposDisponibles.length > 0) {
+                const btn = document.createElement('button');
+                btn.className = 'btn-resultado jugar';
+                btn.textContent = 'Jugar con otro equipo';
+                btn.onclick = () => this.jugarOtroEquipo();
+                botonesResultado.appendChild(btn);
+            }
+            const btnReiniciar = document.createElement('button');
+            btnReiniciar.className = 'btn-resultado reiniciar';
+            btnReiniciar.textContent = 'Reiniciar torneo';
+            btnReiniciar.onclick = () => this.reiniciarTorneo();
+            botonesResultado.appendChild(btnReiniciar);
+
+            const tarjeta = document.getElementById('tarjetaGanador');
+            tarjeta.innerHTML = `
+                <span class="ganador-label">🎖️ Equipo Ganador</span>
+                <span class="ganador-nombre">${equipos[ordenado[0][0]].nombre}</span>
+                <span style="font-size: 0.875rem; font-weight: 900; color: #a5f3fc; display: block; margin-top: 0.5rem;">¡Excelente desempeño!</span>
+            `;
+
+            const ecosistemaGrid = document.getElementById('ecosistemaGrid');
+            ecosistemaGrid.innerHTML = '';
+            ecosistemaLinks.forEach(link => {
+                const a = document.createElement('a');
+                a.className = 'eco-link';
+                a.href = link.url;
+                a.target = '_blank';
+                a.style.background = `linear-gradient(135deg, ${link.colorFrom || '#666'}, ${link.colorTo || '#999'})`;
+                a.innerHTML = `<span class="eco-icono">${link.icon}</span><span>${link.label}</span>`;
+                ecosistemaGrid.appendChild(a);
+            });
+        },
+
+        jugarOtroEquipo() {
+            const equiposDisponibles = Object.keys(equipos).filter(id => !this.equiposYaJugados.has(id));
+            if (equiposDisponibles.length === 0) {
+                this.irAPantalla('inicio');
+                return;
+            }
+
+            this.equipoSeleccionado = null;
+            this.moduloActual = 0;
+            this.retoActual = 0;
+            this.retoCompletado = false;
+            this.retroalimentacion = null;
+            this.respuestaSeleccionada = null;
+            this.vistaAnterior = 'resultado';
+            this.irAPantalla('seleccion');
+        },
+
+        reiniciarTorneo() {
+            this.temaOscuro = true;
+            this.equiposYaJugados = new Set();
+            this.puntuacionGlobal = { atenea: 0, apolo: 0, ares: 0, hemera: 0 };
+            this.respuestasPorEquipo = { atenea: {}, apolo: {}, ares: {}, hemera: {} };
+            this.equipoSeleccionado = null;
+            this.moduloActual = 0;
+            this.retoActual = 0;
+            this.retoCompletado = false;
+            this.retroalimentacion = null;
+            this.respuestaSeleccionada = null;
+            this.vistaAnterior = null;
+            document.body.className = 'dark-mode';
+            document.querySelectorAll('.btn-toggle').forEach(btn => { btn.textContent = '☀️'; });
+            this.irAPantalla('inicio');
+        }
+    };
+
+    // Iniciar
+    window.addEventListener('orientationchange', () => {
+        setTimeout(() => {
+            document.documentElement.style.overflow = 'hidden';
+        }, 100);
+    });
+</script>
+```
+
 </body>
 </html>
